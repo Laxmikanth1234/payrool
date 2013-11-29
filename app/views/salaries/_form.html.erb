@@ -1,0 +1,76 @@
+<%= form_for [@employe, @salary] do |f| %>
+  <% if @salary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@salary.errors.count, "error") %> prohibited this salary from being saved:</h2>
+
+      <ul>
+      <% @salary.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :basic %><br />
+    <%= f.text_field :basic, :class => "values" %>
+  </div>
+  <div class="field">
+    <%= f.label :hra %><br />
+    <%= f.text_field :hra, :class => "values" %>
+  </div>
+  <div class="field">
+    <%= f.label :travel %><br />
+    <%= f.text_field :travel, :class => "values" %>
+  </div>
+  <div class="field">
+    <%= f.label :daily %><br />
+    <%= f.text_field :daily, :class => "values" %>
+  </div>
+  <div class="field">
+    <%= f.label :medical %><br />
+    <%= f.text_field :medical, :class => "values" %>
+  </div>
+  <div class="field">
+    <%= f.label :other %><br />
+    <%= f.text_field :other, :class => "values" %>
+  </div>
+  <div class="field">
+    <%= f.label :variable %><br />
+    <%= f.text_field :variable, :class => "values" %>
+  </div>
+  <div class="field">
+    <%= f.label :gross %><br />
+    <%= f.text_field :gross  %>
+  </div>
+  <div class="field">
+    <%= f.label :professional_tax %><br />
+    <%= f.text_field :professional_tax, :class => "values" %>
+  </div>
+  <div class="field">
+    <%= f.label :pf %><br />
+    <%= f.text_field :pf, :class => "values" %>
+  </div>
+  <div class="field">
+    <%= f.label :esi %><br />
+    <%= f.text_field :esi, :class => "values" %>
+  </div>
+  <div class="field">
+    <%= f.label :total_deductions %><br />
+    <%= f.text_field :total_deductions, :class => "values" %>
+  </div>
+  <div class="field">
+    <%= f.label :net_salary %><br />
+    <%= f.text_field :net_salary %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<script type="text/javascript">
+    $(document).ready(function() {
+    $(".values").blur(function(){
+      alert("hi");
+    });
+  });
+</script>

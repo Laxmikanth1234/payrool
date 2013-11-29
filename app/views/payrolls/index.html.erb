@@ -1,0 +1,55 @@
+<h1>Listing payrolls</h1>
+
+<table>
+  <tr>
+    <th>Employe</th>
+    <th>Basic</th>
+    <th>Hra</th>
+    <th>Travel</th>
+    <th>Daily</th>
+    <th>Medical</th>
+    <th>Other</th>
+    <th>Variable</th>
+    <th>Gross</th>
+    <th>Professional tax</th>
+    <th>Pf</th>
+    <th>Esi</th>
+    <th>Tds</th>
+    <th>Advance salary</th>
+    <th>Total deductions</th>
+    <th>Net salary</th>
+    <th>Total working days</th>
+    <th>Working days</th>
+    <th>Payroll month</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @payrolls.each do |payroll| %>
+  <tr>
+    <td><%= payroll.employe.name %></td>
+    <td><%= payroll.basic %></td>
+    <td><%= payroll.hra %></td>
+    <td><%= payroll.travel %></td>
+    <td><%= payroll.daily %></td>
+    <td><%= payroll.medical %></td>
+    <td><%= payroll.other %></td>
+    <td><%= payroll.variable %></td>
+    <td><%= payroll.gross %></td>
+    <td><%= payroll.professional_tax %></td>
+    <td><%= payroll.pf %></td>
+    <td><%= payroll.esi %></td>
+    <td><%= payroll.tds %></td>
+    <td><%= payroll.advance_salary %></td>
+    <td><%= payroll.total_deductions %></td>
+    <td><%= payroll.net_salary %></td>
+    <td><%= payroll.total_working_days %></td>
+    <td><%= payroll.working_days %></td>
+    <td><%= payroll.payroll_month_year %></td>
+    <td><%= link_to 'Download', "" %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Back', @employe %>

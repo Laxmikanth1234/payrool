@@ -1,0 +1,33 @@
+<h1>Listing employes</h1>
+<%= link_to 'New Employe', new_employe_path %>
+<br />
+<table class="attr_table" cellpadding=0 cellspacing=0 width="100%">
+  <tr>
+    <th>Number</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Date of Joining</th>
+    <th>Mobile Number</th>
+    <th>Active</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @employes.each do |employe| %>
+  <tr>
+    <td><%= employe.number %></td>
+    <td><%= employe.first_name %> <%= employe.middle_name %> <%= employe.last_name %></td>
+    <td><%= employe.email %></td>
+    <td><%= employe.date_of_joining %></td>
+    <td><%= employe.mobile_number %></td>
+    <td><%= employe.active ? "Yes" : "No" %></td>
+    <td><%= link_to 'Show', employe %></td>
+    <td><%= link_to 'Edit', edit_employe_path(employe) %></td>
+    <td><%= link_to 'Destroy', employe, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+
+

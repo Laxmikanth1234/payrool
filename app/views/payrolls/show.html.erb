@@ -1,0 +1,171 @@
+<p id="notice"><%= notice %></p>
+
+<table border='1' style="width:80%;">
+  <tr>
+    <td style="text-align:center;">
+      <%= image_tag("Logo-website2.png") %>
+      <br>
+      <h2> Payslip for the Month of <%= @payroll.payroll_month_year %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table style="width:100%;">
+        <tr>
+          <td style="width:20%;">Emp No. </td>
+          <td style="width:30%;"><%= @payroll.employe.number %></td>
+          <td style="width:20%;">Bank Name</td>
+          <td style="width:30%;"><%= @payroll.employe.bank_name %></td>
+        </tr>
+        <tr>
+          <td>Name </td>
+          <td><%= @payroll.employe.name %></td>
+          <td>Bank A/C No </td>
+          <td><%= @payroll.employe.act_number %></td>
+        </tr>
+        <tr>
+          <td>Designation </td>
+          <td><%= @payroll.employe.designation %></td>
+          <td>DOJ </td>
+          <td><%= @payroll.employe.date_of_joining %></td>
+        </tr>
+        <tr>
+          <td>Total Working Days </td>
+          <td><%= @payroll.total_working_days %></td>
+          <td>Worked Days </td>
+          <td><%= @payroll.working_days %></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table style="width:100%;">
+        <tr>
+          <th style="width:50%;text-align:center;" colspan='2'>Month Earnings</th>
+          <th style="width:50%;text-align:center;" colspan='2'>Month Deductions</th>
+        </tr>
+        <tr>
+          <td style="width:30%;">Basic</td>
+          <td style="width:20%;"><%= @payroll.basic %></td>
+          <td style="width:30%;">Professional Tax</td>
+          <td style="width:20%;"><%= @payroll.professional_tax %></td>
+        </tr>
+        <tr>
+          <td>HRA</td>
+          <td><%= @payroll.hra %></td>
+          <td>TDS</td>
+          <td><%= @payroll.tds %></td>
+        </tr>
+        <tr>
+          <td>LTA</td>
+          <td><%= @payroll.travel %></td>
+          <td>ESI</td>
+          <td><%= @payroll.esi %></td>
+        </tr>
+        <tr>
+          <td>Medical Allowances</td>
+          <td><%= @payroll.medical %></td>
+          <td>Provident Fund</td>
+          <td><%= @payroll.pf %></td>
+        </tr>
+        <tr>
+          <td>Special Allowances</td>
+          <td><%= @payroll.daily %></td>
+          <td>Advance Salary</td>
+          <td><%= @payroll.advance_salary %></td>
+        </tr>
+        <tr>
+          <td>Others</td>
+          <td><%= @payroll.other %></td>
+        </tr>
+        <tr>
+          <td>Variable</td>
+          <td><%= @payroll.variable %></td>
+        </tr>
+        <tr>
+          <td>Gross</td>
+          <td><%= @payroll.gross %></td>
+          <td>Totals Deductions</td>
+          <td><%= @payroll.total_deductions %></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <th style="text-align:left;">
+      Net Salary
+      <div style="float:right"><%= @payroll.net_salary %></div>
+    </th>
+  </tr>
+</table>
+
+<%= link_to 'Download', "" %>
+<!-- 
+  <table style="width:100%;">
+        <tr>
+          <th style="width:33%;text-align:center;" colspan='2'>Salary Breakup</th>
+          <th style="width:33%;text-align:center;" colspan='2'>Month Earnings</th>
+          <th style="width:33%;text-align:center;" colspan='2'>Month Deductions</th>
+        </tr>
+        <tr>
+          <td style="width:16%;">Basic</td>
+          <td style="width:16%;"><%= @payroll.employe.salary.basic_per_month %></td>
+          <td style="width:16%;">Basic</td>
+          <td style="width:16%;"><%= @payroll.basic %></td>
+          <td style="width:16%;">Professional Tax</td>
+          <td style="width:16%;"><%= @payroll.professional_tax %></td>
+        </tr>
+        <tr>
+          <td>HRA </td>
+          <td><%= @payroll.employe.salary.hra_per_month %></td>
+          <td>HRA</td>
+          <td><%= @payroll.hra %></td>
+          <td>TDS</td>
+          <td><%= @payroll.tds %></td>
+        </tr>
+        <tr>
+          <td>LTA</td>
+          <td><%= @payroll.employe.salary.travel_per_month %></td>
+          <td>LTA</td>
+          <td><%= @payroll.travel %></td>
+          <td>ESI</td>
+          <td><%= @payroll.esi %></td>
+        </tr>
+        <tr>
+          <td>Medical Allowances</td>
+          <td><%= @payroll.employe.salary.medical_per_month %></td>
+          <td>Medical Allowances</td>
+          <td><%= @payroll.medical %></td>
+          <td>Provident Fund</td>
+          <td><%= @payroll.pf %></td>
+        </tr>
+        <tr>
+          <td>Daily Allowances</td>
+          <td><%= @payroll.employe.salary.daily_per_month %></td>
+          <td>Special Allowances</td>
+          <td><%= @payroll.daily %></td>
+          <td>Advance Salary</td>
+          <td><%= @payroll.advance_salary %></td>
+        </tr>
+        <tr>
+          <td>Others</td>
+          <td><%= @payroll.employe.salary.other_per_month %></td>
+          <td>Others</td>
+          <td><%= @payroll.other %></td>
+        </tr>
+        <tr>
+          <td>Variable</td>
+          <td><%= @payroll.employe.salary.variable_per_month %></td>
+          <td>Variable</td>
+          <td><%= @payroll.variable %></td>
+        </tr>
+        <tr>
+          <td>Gross</td>
+          <td><%= @payroll.employe.salary.gross_per_month %></td>
+          <td>Gross</td>
+          <td><%= @payroll.gross %></td>
+          <td>Tota Deductions</td>
+          <td><%= @payroll.total_deductions %></td>
+        </tr>
+      </table> -->

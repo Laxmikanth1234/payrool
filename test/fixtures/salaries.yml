@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  employe: 1
+  basic: 1
+  hra: 1
+  travel: 1
+  daily: 1
+  medical: 1
+  other: 1
+  variable: 1
+  gross: 1
+  professional_tax: 1
+  pf: 1
+  esi: 1
+  total_deductions: 1
+  net_salary: 1
+
+two:
+  employe: 1
+  basic: 1
+  hra: 1
+  travel: 1
+  daily: 1
+  medical: 1
+  other: 1
+  variable: 1
+  gross: 1
+  professional_tax: 1
+  pf: 1
+  esi: 1
+  total_deductions: 1
+  net_salary: 1
