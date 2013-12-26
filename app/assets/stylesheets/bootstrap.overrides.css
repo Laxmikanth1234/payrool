@@ -1,0 +1,11 @@
+.bootstrap .popover { max-width: 600px; }
+
+.bootstrap .well-small :last-child { margin-bottom: 0px; }
+
+.bootstrap li { margin-left: 0px; }
+
+.bootstrap hr.dark { height:1px; background-color: #333; }
+
+.bootstrap .text-right  { text-align: right !important;  }
+.bootstrap .text-center { text-align: center !important; }
+.bootstrap .text-left   { text-align: left !important;   }

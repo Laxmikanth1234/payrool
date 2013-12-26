@@ -1,13 +1,17 @@
-<h1>Log in</h1>
+<div class="row bootstrap">
+  <fieldset>
+    <legend><h1>Sign in</h1></legend>
+    <div class="span6 offset3">
+      <%= form_for(:session) do |f| %>
 
-<%= form_tag sessions_path do %>
-  <p>
-    <%= label_tag :email %><br />
-    <%= text_field_tag :email, params[:email] %>
-  </p>
-  <p>
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
-  </p>
-  <p class="button"><%= submit_tag "Log in" %></p>
-<% end %>
+        <%= f.label :user_name %>
+        <%= f.text_field :user_name %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+        &nbsp;&nbsp;
+        <%= f.submit "Sign in", class: "btn btn-medium btn-primary" %>
+        <% end %>
+      </div>
+    </fieldset>
+  </div>

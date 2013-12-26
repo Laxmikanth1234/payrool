@@ -75,9 +75,9 @@ ActiveRecord::Schema.define(:version => 20131107115351) do
     t.integer  "esi"
     t.integer  "total_deductions"
     t.integer  "net_salary"
-    t.boolean  "active",           :default => true
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.boolean  "active"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "users", :force => true do |t|

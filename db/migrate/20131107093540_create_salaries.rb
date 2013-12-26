@@ -16,7 +16,6 @@ class CreateSalaries < ActiveRecord::Migration
       t.integer :total_deductions
       t.integer :net_salary
       t.boolean :active, :default =>  true
-
       t.timestamps
     end
   end

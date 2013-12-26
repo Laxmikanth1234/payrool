@@ -9,5 +9,14 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require bootstrap
+ *= require bootstrap.tagmanager
+ *= require bootstrap.datepicker
+ *= require bootstrap.select
+ *= require bootstrap.overrides
+ *= require bootstrap.daterangepicker
+ *= require bootstrap-modal
+ *= require bootstrap-modal-bs3patch
+ *= require bootstrap-responsive
  *= require_tree .
 */
