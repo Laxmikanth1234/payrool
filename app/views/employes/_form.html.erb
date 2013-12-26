@@ -1,5 +1,12 @@
+<div class="container_24 clearfix">
 <%= form_for(@employe) do |f| %>
-  <% if @employe.errors.any? %>
+  <div class="bootstrap">
+    <ul class="nav nav-tabs">
+     <li><a href="#basic" data-toggle="tab">Basic Details</a></li>
+     <li><a href="#contact" data-toggle="tab">Other Details</a></li>
+     <li><a href="#messages" data-toggle="tab">Bank Details</a></li>
+    </ul>
+    <% if @employe.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@employe.errors.count, "error") %> prohibited this employe from being saved:</h2>
 
@@ -118,4 +125,7 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+  </div>
 <% end %>
+
+</div>
