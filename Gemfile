@@ -1,13 +1,16 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem "pg", '0.14.1'
-
-
+gem 'pg','0.12.1'
+gem 'devise', '1.4.5'
+#gem 'jasperserver-client', :git => 'git://github.com/gunark/jasperserver-client.git'
+#gem 'jasperserver-client'
+#gem 'jasper-client'
+#gem 'savon'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -15,16 +18,18 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-   gem 'therubyracer', "0.10.2"
+   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails'
 end
-
+#gem 'soap4r'
+#gem 'httpclient'
+gem 'soap4r-ruby1.9'
+#, :git => 'git://github.com/felipec/soap4r.git'
+#gem 'savon'
+gem 'jasperserver-client'
+gem 'xml-simple'
 gem 'jquery-rails'
-gem "bcrypt-ruby", :require => "bcrypt"
-gem 'jquery-rails'
-gem 'prawn'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -39,4 +44,4 @@ gem 'prawn'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+# gem 'debugger'

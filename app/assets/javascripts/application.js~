@@ -12,12 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require_tree .
-//= require bootstrap
-//= require bootstrap.datepicker
-//= require bootstrap.select
-//= require bootstrap.tagmanager
-//= require bootstrap.timepicker
-//= require bootstrap.daterangepicker
-//= require bootstrap-modal
-//= require bootstrap-modalmanager
