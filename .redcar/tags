@@ -1,4 +1,4 @@
-1387992405
+1388167367
 AddFieldsToCustomers	/home/chandra/Desktop/payrool/db/migrate/20131107113054_add_fields_to_customers.rb	class AddFieldsToCustomers 
 AddNameToUsers	/home/chandra/Desktop/payrool/db/migrate/20131104135227_add_name_to_users.rb	class AddNameToUsers 
 Application	/home/chandra/Desktop/payrool/config/application.rb	  class Application 
@@ -45,24 +45,24 @@ b	/home/chandra/Desktop/payrool/app/assets/javascripts/bootstrap.min.js	function
 basic_per_month	/home/chandra/Desktop/payrool/app/models/salary.rb	  def basic_per_month
 calculate_salary	/home/chandra/Desktop/payrool/app/models/payroll.rb	  def calculate_salary(salary)
 change	/home/chandra/Desktop/payrool/db/migrate/20131107113054_add_fields_to_customers.rb	  def change
-change	/home/chandra/Desktop/payrool/db/migrate/20131107093540_create_salaries.rb	  def change
 change	/home/chandra/Desktop/payrool/db/migrate/20131104133902_create_users.rb	  def change
 change	/home/chandra/Desktop/payrool/db/migrate/20131104152610_create_employes.rb	  def change
 change	/home/chandra/Desktop/payrool/db/migrate/20131107115351_create_payrolls.rb	  def change
 change	/home/chandra/Desktop/payrool/db/migrate/20131104135227_add_name_to_users.rb	  def change
+change	/home/chandra/Desktop/payrool/db/migrate/20131107093540_create_salaries.rb	  def change
 clearMenus	/home/chandra/Desktop/payrool/app/assets/javascripts/bootstrap.js	function clearMenus()
 complete	/home/chandra/Desktop/payrool/app/assets/javascripts/bootstrap.js	function complete()
 create	/home/chandra/Desktop/payrool/app/controllers/payrolls_controller.rb	  def create
 create	/home/chandra/Desktop/payrool/app/controllers/salaries_controller.rb	  def create
-create	/home/chandra/Desktop/payrool/app/controllers/sessions_controller.rb		def create
 create	/home/chandra/Desktop/payrool/app/controllers/users_controller.rb		def create
 create	/home/chandra/Desktop/payrool/app/controllers/employes_controller.rb	  def create
+create	/home/chandra/Desktop/payrool/app/controllers/sessions_controller.rb		def create
 current_user	/home/chandra/Desktop/payrool/app/controllers/application_controller.rb	  def current_user
 daily_per_month	/home/chandra/Desktop/payrool/app/models/salary.rb	  def daily_per_month
 destroy	/home/chandra/Desktop/payrool/app/controllers/payrolls_controller.rb	  def destroy
 destroy	/home/chandra/Desktop/payrool/app/controllers/salaries_controller.rb	  def destroy
-destroy	/home/chandra/Desktop/payrool/app/controllers/sessions_controller.rb		def destroy
 destroy	/home/chandra/Desktop/payrool/app/controllers/employes_controller.rb	  def destroy
+destroy	/home/chandra/Desktop/payrool/app/controllers/sessions_controller.rb		def destroy
 edit	/home/chandra/Desktop/payrool/app/controllers/payrolls_controller.rb	  def edit
 edit	/home/chandra/Desktop/payrool/app/controllers/salaries_controller.rb	  def edit
 edit	/home/chandra/Desktop/payrool/app/controllers/employes_controller.rb	  def edit
@@ -78,9 +78,9 @@ medical_per_month	/home/chandra/Desktop/payrool/app/models/salary.rb	  def medic
 name	/home/chandra/Desktop/payrool/app/models/employe.rb	  def name
 new	/home/chandra/Desktop/payrool/app/controllers/payrolls_controller.rb	  def new
 new	/home/chandra/Desktop/payrool/app/controllers/salaries_controller.rb	  def new
-new	/home/chandra/Desktop/payrool/app/controllers/sessions_controller.rb	  	def new
 new	/home/chandra/Desktop/payrool/app/controllers/users_controller.rb	  	def new
 new	/home/chandra/Desktop/payrool/app/controllers/employes_controller.rb	  def new
+new	/home/chandra/Desktop/payrool/app/controllers/sessions_controller.rb	  	def new
 next	/home/chandra/Desktop/payrool/app/assets/javascripts/bootstrap.js	function next()
 other_per_month	/home/chandra/Desktop/payrool/app/models/salary.rb	  def other_per_month
 password	/home/chandra/Desktop/payrool/app/models/user.rb	  attr_accessor :password
