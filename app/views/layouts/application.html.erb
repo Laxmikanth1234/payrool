@@ -6,20 +6,59 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
+<style>
+ a img {
+border: none !important;
+display: block;
+border-bottom: 0px;
+}
+a:hover img {
+border: none !important;
+display: block;
+border-bottom: 0px;
+}
+</style>
 <body>
-<div id="user_nav" >
+<!--<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Project name</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>-->
+<div id="user_nav" class="navbar navbar-inverse navbar-fixed-top" >
   <% if current_user %>
-    <%= image_tag("Logo-website2.png") %>
-    <div style="float:right;">
-      Logged in as <%= current_user.name %>.
-      <%= link_to "Log out", log_out_path %>
+    <%= image_tag("Logo-website2.png",:class => 'aimg',:style => "background-color:white;height:60px") %>
+    <div style="float:right;color:white;font-size: 12pt;margin:15px">
+      Logged in as <%= current_user.first_name %> &nbsp;|&nbsp; 
+      <%= link_to "Log out", destroy_user_session_path, :method => 'delete' %>
     </div>
+    <%= link_to image_tag("home2.png",:class => 'aimg',:style => "float:right;height:40px;margin:10px"), root_path %>
   <% else %>
-    <%= link_to "Sign up..", sign_up_path %> or
-    <%= link_to "log in..", log_in_path %>
+    <%= image_tag("Logo-website2.png",:class => 'aimg',:style => "background-color:white;height:60px") %>
+    <div style="float:right;color:white;font-size: 12pt;margin:15px">
+     <%= link_to "Sign up..", sign_up_path %> or
+     <%= link_to "log in..", log_in_path %>
+    </div>
   <% end %>
 </div>
-
+</br>
+</br>
+</br>
+</br>
+</brr>
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>

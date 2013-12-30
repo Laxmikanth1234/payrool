@@ -1,11 +1,11 @@
 class EmployesController < ApplicationController
 
-  before_filter :require_user
+  before_filter :authenticate_user!
   
   # GET /employes
   # GET /employes.json
   def index
-    @employes = Employe.all
+    @employes = User.all
 
     respond_to do |format|
       format.html # index.html.erb

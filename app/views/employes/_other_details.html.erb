@@ -1,0 +1,79 @@
+<div class="form-horizontal">
+<div class="control-group">
+  <%= f.label :email, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :email, :class => 'text_field' %>
+    <% if @employe.errors[:email].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:email].first %>
+      </span> 
+    <% end %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :pan, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :pan, :class => 'text_field' %>
+    <% if @employe.errors[:pan].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:pan].first %>
+      </span> 
+    <% end %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :designation, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :designation, :class => 'text_field' %>
+    <% if @employe.errors[:designation].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:designation].first %>
+      </span> 
+    <% end %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :mobile_number, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :mobile_number, :class => 'text_field' %>
+    <% if @employe.errors[:mobile_number].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:mobile_number].first %>
+      </span> 
+    <% end %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :date_of_joining, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :date_of_joining, :class => 'text_field datepicker' %>
+    <% if @employe.errors[:date_of_joining].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:date_of_joining].first %>
+      </span> 
+    <% end %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :address, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_area :address, :class => 'text_area', :rows => 4 %>
+    <% if @employe.errors[:address].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:address].first %>
+      </span> 
+    <% end %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :last_down_ctc, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :last_down_ctc, :class => 'text_field' %>
+    <% if @employe.errors[:last_down_ctc].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:last_down_ctc].first %>
+      </span> 
+    <% end %>
+  </div>
+</div>
+</div>

@@ -7,14 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container">
-  <%= image_tag("Logo-website2.png") %>
-  <div style="float:right;">
-    <%= link_to "Sign up.", sign_up_path %> or
-    <%= link_to "log in.", log_in_path %>
+<div id="user_nav" class="navbar navbar-inverse navbar-fixed-top" >
+  <%= image_tag("Logo-website2.png",:style => "background-color:white;") %>
+  <div style="float:right;color:white;font-size: 12pt;margin:15px">
+  <%= link_to "Sign up.", sign_up_path,:style => 'color:white;' %> &nbsp;|&nbsp;
+    <%= link_to "log in.", log_in_path,:style => 'color:white;' %>
   </div>
 </div>
-
+<br/>
+<br/>
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>

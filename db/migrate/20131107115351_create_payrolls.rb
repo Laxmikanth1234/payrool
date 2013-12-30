@@ -1,7 +1,7 @@
 class CreatePayrolls < ActiveRecord::Migration
   def change
     create_table :payrolls do |t|
-      t.integer :employe_id
+      t.integer :user_id
       t.integer :basic, :default =>  0
       t.integer :hra, :default =>  0
       t.integer :travel, :default =>  0

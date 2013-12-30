@@ -1,0 +1,17 @@
+<div class="row bootstrap">
+  <fieldset>
+    <legend><h1>Sign in</h1></legend>
+    <div class="span6 offset3">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+        &nbsp;&nbsp;
+        <%= f.submit "Sign in", class: "btn btn-medium btn-primary" %>
+        <% end %>
+      </div>
+  </fieldset>
+</div>

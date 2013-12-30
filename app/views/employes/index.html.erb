@@ -1,7 +1,10 @@
 <div class="bootstrap">
-<h1>Listing employes</h1>
-<%= link_to 'New Employe', new_employe_path %>
-<br />
+<h1>Manage Employees</h1>
+<div class="float_r">
+ <%= link_to 'New Employe', new_employe_path,:class => 'btn btn-info' %>
+</div>
+<br/>
+<br/>
 <table class="table table-striped table-bordered">
   <thead>
   <tr>
@@ -11,23 +14,24 @@
     <th>Date of Joining</th>
     <th>Mobile Number</th>
     <th>Active</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Actions</th>
   </tr>
 </thead>
 <tbody>
 <% @employes.each do |employe| %>
   <tr>
-    <td><%= employe.number %></td>
+    <td><%= employe.id %></td>
     <td><%= employe.first_name %> <%= employe.middle_name %> <%= employe.last_name %></td>
     <td><%= employe.email %></td>
     <td><%= employe.date_of_joining %></td>
     <td><%= employe.mobile_number %></td>
     <td><%= employe.active ? "Yes" : "No" %></td>
-    <td><%= link_to 'Show', employe %></td>
-    <td><%= link_to 'Edit', edit_employe_path(employe) %></td>
-    <td><%= link_to 'Destroy', employe, confirm: 'Are you sure?', method: :delete %></td>
+    <td>
+     <div style="float:left;">
+       <%= link_to image_tag("edit.png",:style => "height:20px;float:left"), edit_user_registration_path(employe),:rel => "tooltip", :title => "Edit Employee" %> 
+       <%= link_to  image_tag("delete.jpg",:style => "height:20px;float:right"), user_registration_path(employe), confirm: 'Are you sure?', method: :delete,:rel => "tooltip", :title => "Remove Employee" %>
+     </div>
+    </td>
   </tr>
 <% end %>
 </tbody>

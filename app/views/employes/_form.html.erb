@@ -2,130 +2,41 @@
 <%= form_for(@employe) do |f| %>
   <div class="bootstrap">
     <ul class="nav nav-tabs">
-     <li class="active bold"><a href="#basic" data-toggle="tab">Basic Details</a></li>
-     <li class="bold"><a href="#contact" data-toggle="tab">Other Details</a></li>
+     <li class="active bold"><a href="#basic" id="basic_a" data-toggle="tab">Basic Details</a></li>
+     <li class="bold"><a href="#contact" id="contact_a" data-toggle="tab">Other Details</a></li>
      <li class="bold"><a href="#bank" data-toggle="tab">Bank Details</a></li>
     </ul>
-    <% if @employe.errors.any? %>
-     <div id="error_explanation">
-     <h2><%= pluralize(@employe.errors.count, "error") %> prohibited this employe from being saved:</h2>
-
-     <ul>
-      <% @employe.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-     </ul>
-    </div>
-    <% end %>
     <div class="tab-content">
       <div class="tab-pane active" id="basic">
-        <div class="control-group">
-    <%= f.label :number, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :number, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :first_name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :first_name, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :middle_name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :middle_name, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :last_name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :last_name, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :date_of_birth, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :date_of_birth, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :sex, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.select :sex, ["", "Male", "Female"] %>
-    </div>
-  </div>
+        <%= render 'basic_details',:f => f %>
       </div>
       <div class="tab-pane" id="contact">
-          <div class="control-group">
-    <%= f.label :email, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :email, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :pan, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :pan, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :designation, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :designation, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :mobile_number, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :mobile_number, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :date_of_joining, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :date_of_joining, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :address, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :address, :class => 'text_area', :rows => 4 %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :last_down_ctc, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :last_down_ctc, :class => 'text_field' %>
-    </div>
-  </div>
+        <%= render 'other_details',:f => f %>
       </div>
       <div class="tab-pane" id="bank">
-        <div class="control-group">
-    <%= f.label :bank_name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :bank_name, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :name_in_bank, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name_in_bank, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :act_number, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :act_number, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :ifsc_code, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :ifsc_code, :class => 'text_field' %>
-    </div>
-  </div>
+        <%= render 'bank_details',:f => f %>
       </div>
     </div>
+    <div class="bootstrap">
+  <div class="actions">
+    <%= link_to 'Go to Employees Page', employes_path,:class => "btn" %>
+    <%= f.submit "Create Employee",:class => "btn btn-primary" %>
+  </div>
+</div>
  <% end %>
 </div>
+<% if @employe.errors[:first_name].present? || @employe.errors[:last_name].present? || @employe.errors[:number].present? || @employe.errors[:date_of_birth].present? || @employe.errors[:sex].present? %>
+ <script> 
+   alert("oyeee")
+   $("#basic_a").click();
+ </script>
+<% elsif @employe.errors[:email].present? || @employe.errors[:mobile_number].present? || @employe.errors[:pan].present? || @employe.errors[:designation].present? || @employe.errors[:date_of_joining].present? || @employe.errors[:address].present? ||  @employe.errors[:last_down_ctc].present? %>
+ <script> 
+   $("#contact_a").click();
+ </script>
+<% end %>
+<script>
+  $(function() {
+    $( ".datepicker" ).datepicker();
+  });
+  </script>

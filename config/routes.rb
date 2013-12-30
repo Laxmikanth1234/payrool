@@ -1,8 +1,18 @@
 Payrolles::Application.routes.draw do
   resources :payrolls
   resources :salaries
-  resources :users
-  resources :sessions
+  devise_for :users,  :controllers => { :registrations => "users/Registrations" }
+  root :to => "employes#index"
+  resources :holidays
+  resources :leaves do
+    member do
+      put 'approve_leave'
+    end
+    collection do
+      get 'leave_history'
+      get 'leave_to_approve'
+    end
+  end
   resources :employes do
     resources :salaries
     resources :payrolls
