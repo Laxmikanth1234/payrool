@@ -27,7 +27,7 @@ class EmployesController < ApplicationController
   # GET /employes/new
   # GET /employes/new.json
   def new
-    @employe = Employe.new
+    @employe = User.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,7 +37,7 @@ class EmployesController < ApplicationController
 
   # GET /employes/1/edit
   def edit
-    @employe = Employe.find(params[:id])
+    @employe = User.find(params[:id])
   end
 
   # POST /employes
@@ -59,7 +59,7 @@ class EmployesController < ApplicationController
   # PUT /employes/1
   # PUT /employes/1.json
   def update
-    @employe = Employe.find(params[:id])
+    @employe = User.find(params[:id])
 
     respond_to do |format|
       if @employe.update_attributes(params[:employe])

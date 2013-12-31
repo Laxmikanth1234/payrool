@@ -9,7 +9,7 @@ body { padding: 1.5em; }
 #wrapper { margin-left: auto; margin-right: auto; width: 960px; }
 
 h1 { color: #4B4C4C; padding: 0px; margin-bottom: 5px; font-size: 22px; }
-a, a:hover, a:visited, a:active { color: #0000FF; }
+/*a, a:hover, a:visited, a:active { color: #0000FF; } */
 .rating { margin: 0; padding: 0;}
 
 .star_rating { width: 80px; height: 16px; background: url(jquery.ui.stars.gif) repeat-x 0 -34px; }

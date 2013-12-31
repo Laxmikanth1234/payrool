@@ -219,12 +219,12 @@
   background-color: #ffffff;
 }
 .bootstrap a {
-  color: #0088cc;
+/*color: #0088cc;*/
   text-decoration: none;
 }
 .bootstrap a:hover,
 .bootstrap a:focus {
-  color: #005580;
+/*color: #005580;*/
   text-decoration: underline;
 }
 .bootstrap .img-rounded {

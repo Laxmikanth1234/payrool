@@ -17,6 +17,9 @@ border: none !important;
 display: block;
 border-bottom: 0px;
 }
+.menu ul { padding:0; margin:0; list-style:none; border:0; float:left;}
+.menu ul li { float:left; margin:0; padding:0; border:0;}
+.menu ul li a { float:left; margin:0; padding:0px  07px;  text-decoration:underline; border:1px solid #000;}
 </style>
 <body>
 <!--<div class="navbar navbar-inverse navbar-fixed-top">
@@ -40,12 +43,26 @@ border-bottom: 0px;
     </div>-->
 <div id="user_nav" class="navbar navbar-inverse navbar-fixed-top" >
   <% if current_user %>
-    <%= image_tag("Logo-website2.png",:class => 'aimg',:style => "background-color:white;height:60px") %>
-    <div style="float:right;color:white;font-size: 12pt;margin:15px">
-      Logged in as <%= current_user.first_name %> &nbsp;|&nbsp; 
+  <div class="container" style="width:100%">
+    <div style="float:left;">
+      <%= image_tag("Logo-website2.png",:class => 'aimg',:style => "background-color:white;height:60px") %>
+    </div>  
+    <div class="menu" style="float:left;width:50%;color:white;margin:20px 40px 0px 50px;">
+     <ul> 
+      <li> <a href="#" class="btn-default" style="font-size: 13pt;">Manage Employees</a></li>  
+      <li> <a href="#" class="btn-default" style="font-size: 13pt;">Manage Leaves</a></li>
+      <li> <a href="#" class="btn-default" style="font-size: 13pt;">Manage Holidays</a></li>
+    </ul>
+    </div>
+    <div style="float:left;">
+    <%= link_to image_tag("home2.png",:class => 'aimg',:style => "float:right;height:40px;margin:10px;"), root_path %>
+    </div>
+    <div style="float:left;color:white;font-size: 12pt;margin:20px 10px 0px 0px;">
+     Logged in as <%= current_user.first_name %> &nbsp;|&nbsp; 
       <%= link_to "Log out", destroy_user_session_path, :method => 'delete' %>
     </div>
-    <%= link_to image_tag("home2.png",:class => 'aimg',:style => "float:right;height:40px;margin:10px"), root_path %>
+  </div>
+      
   <% else %>
     <%= image_tag("Logo-website2.png",:class => 'aimg',:style => "background-color:white;height:60px") %>
     <div style="float:right;color:white;font-size: 12pt;margin:15px">

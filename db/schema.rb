@@ -136,6 +136,11 @@ ActiveRecord::Schema.define(:version => 20131107115351) do
     t.datetime "date_of_joining"
     t.text     "address"
     t.integer  "last_down_ctc"
+    t.integer  "number"
+    t.text     "bank_name"
+    t.text     "name_in_bank"
+    t.text     "act_number"
+    t.text     "ifsc_code"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.string   "encrypted_password",     :default => "",    :null => false

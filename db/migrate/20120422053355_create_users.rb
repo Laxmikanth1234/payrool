@@ -20,6 +20,11 @@ class CreateUsers < ActiveRecord::Migration
       t.datetime :date_of_joining
       t.text 	   :address
       t.integer  :last_down_ctc
+      t.integer :number
+      t.text :bank_name
+      t.text :name_in_bank
+      t.text :act_number
+      t.text :ifsc_code
       t.timestamps
     end
   end
