@@ -1,26 +1,43 @@
-<div class="l_row">
-  <span class="l_label">
-    Start Date<span class="mandatory">&nbsp;* &nbsp</span>
-  </span>
-  <span class="r_label">
-    <%= f.text_field :start_date  %>
-  </span>
+<div class="form-horizontal">
+<div class="control-group">
+  <%= f.label :start_date, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :start_date, :class => 'text_field datepicker' %>
+    <% if @leave.errors[:start_date].present? %>
+      <span class="alert alert-error bold">
+        <%= @leave.errors[:start_date].first %>
+      </span> 
+    <% end %>
+  </div>
 </div>
-<div class="l_row">
-  <span class="l_label">
-    End Date <span class="mandatory">&nbsp;* &nbsp</span>
-  </span>
-  <span class="r_label">
-    <%= f.text_field :end_date  %>
-  </span>
+<div class="control-group">
+<%= current_user.manager.inspect %>  
+<%= @leave.errors.inspect%>
+  <%= f.label :end_date, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :end_date, :class => 'text_field datepicker' %>
+    <% if @leave.errors[:end_date].present? %>
+      <span class="alert alert-error bold">
+        <%= @leave.errors[:end_date].first %>
+      </span> 
+    <% end %>
+  </div>
 </div>
-<div class="l_row">
-  <span class="l_label"  style="height: 330px">
-    Reason For Leave<span class="mandatory">&nbsp;* &nbsp</span>
-  </span>
-  <span class="r_label" style="height: 330px">
-    <%= f.text_area :reason_for_leave %>
-  </span>
+<div class="control-group">
+  <%= f.label :reason_for_leave, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_area :reason_for_leave, :class => 'text_field' %>
+    <% if @leave.errors[:reason_for_leave].present? %>
+      <span class="alert alert-error bold">
+        <%= @leave.errors[:reason_for_leave].first %>
+      </span> 
+    <% end %>
+  </div>
 </div>
+</div>
+<script>
 
-
+  $(function() {
+    $( ".datepicker" ).datepicker();
+  });
+  </script>

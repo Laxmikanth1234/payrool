@@ -22,14 +22,14 @@ class LeavesController < ApplicationController
     @holiday_day = Holiday.new.holiday_between_leaves(start_date, end_date)
     @working_day = @total_days.reject{ |d| @holiday_day.include?(d)}
     @leave.user_id = current_user.id
-    @leave.manager_id = current_user.manager
+    @leave.manager_id = current_user.manager_id
     @leave.status = "pending"
     @leave.working_days = @working_day.count
     @leave.holiday_days = @holiday_day.count
     @leave.total_days = @total_days.size
     if @leave.valid?
-      @leave.save
-      LmsMailer.applied_for_leave(@leave, current_user, @working_day, @holiday_day).deliver
+      @leave.save!
+      # LmsMailer.applied_for_leave(@leave, current_user, @working_day, @holiday_day).deliver
       redirect_to leaves_path
     else
       render 'new'
@@ -83,7 +83,7 @@ class LeavesController < ApplicationController
   end
 
   def manager_required
-    if current_user && current_user.is_manager?
+    if current_user && (current_user.is_manager? || current_user.is_admin?)
       true
     else
       flash[:notice] = "You are not authorized to Approve Leaves"

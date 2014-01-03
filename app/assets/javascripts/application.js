@@ -51,18 +51,6 @@ jQuery(document).ready(function(){
                 }
             });
 
-    $("#leave_start_date").datepicker({
-        dateFormate : 'dd-mm-yy'
-    });
-
-    $("#leave_end_date").datepicker({
-        dateFormate : 'dd-mm-yy'
-    });
-
-    $("#user_joining_date").datepicker({
-        dateFormate : 'dd-mm-yy'
-    });
-
-})
+ })
 
 
