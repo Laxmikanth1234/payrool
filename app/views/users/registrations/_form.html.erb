@@ -1,71 +1,114 @@
-<div class="l_row">
-  <span class="l_label">
-    Name<span class="mandatory">&nbsp;* &nbsp</span>
-  </span>
-  <span class="r_label">
-    <%= f.text_field :name %>
-  </span>
-</div>
-
-<div class="l_row">
-  <span class="l_label">
-    Email<span class="mandatory">&nbsp;* &nbsp</span>
-  </span>
-  <span class="r_label">
-    <%= f.text_field :email %>
-  </span>
-</div>
-
-<div class="l_row">
-  <span class="l_label">
-    Password<span class="mandatory">&nbsp;* &nbsp</span>
-  </span>
-  <span class="r_label">
-    <%= f.text_field :password %>
-  </span>
-</div>
-<div class="l_row">
-  <span class="l_label">
-    Confirm Password<span class="mandatory">&nbsp;* &nbsp</span>
-  </span>
-  <span class="r_label">
-    <%= f.text_field :password_confirmation %>
-  </span>
-</div>
-
-<div class="l_row">
-  <span class="l_label">
-    Role<span class="mandatory">&nbsp;* &nbsp</span>:
-  </span>
-  <span class="r_label">
+<div class="form-horizontal">
+  <div class="control-group">
+  <%= f.label :first_name, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :first_name, :class => 'text_field' %>
+    <% if @user.errors[:first_name].present? %>
+      <span class="alert alert-error bold">
+        <%= @user.errors[:first_name].first %>
+      </span> 
+    <% end %>
+    </div>
+  </div>
+  <div class="control-group">
+  <%= f.label :last_name, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :last_name, :class => 'text_field' %>
+    <% if @user.errors[:last_name].present? %>
+      <span class="alert alert-error bold">
+        <%= @user.errors[:last_name].first %>
+      </span> 
+    <% end %>
+    </div>
+  </div>
+    <div class="control-group">
+  <%= f.label :middle_name, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :middle_name, :class => 'text_field' %>
+    <% if @user.errors[:middle_name].present? %>
+      <span class="alert alert-error bold">
+        <%= @user.errors[:middle_name].first %>
+      </span> 
+    <% end %>
+    </div>
+  </div>
+      <div class="control-group">
+  <%= f.label :email, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :email, :class => 'text_field' %>
+    <% if @user.errors[:email].present? %>
+      <span class="alert alert-error bold">
+        <%= @user.errors[:email].first %>
+      </span> 
+    <% end %>
+    </div>
+  </div>
+  <div class="control-group">
+  <%= f.label :password, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :password, :class => 'text_field' %>
+    <% if @user.errors[:password].present? %>
+      <span class="alert alert-error bold">
+        <%= @user.errors[:password].first %>
+      </span> 
+    <% end %>
+    </div>
+  </div>
+  <div class="control-group">
+  <%= f.label :password_confirmation, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :password_confirmation, :class => 'text_field' %>
+    <% if @user.errors[:password_confirmation].present? %>
+      <span class="alert alert-error bold">
+        <%= @user.errors[:password_confirmation].first %>
+      </span> 
+    <% end %>
+    </div>
+  </div>
+    <div class="control-group">
+  <%= f.label :role, :class => 'control-label' %>
+  <div class="controls">
     <%=f.select :role_id, options_from_collection_for_select(@role, "id", "name") %>
-  </span>
-</div>
-
-<div class="l_row">
-  <span class="l_label">
-    Manager<span class="mandatory">&nbsp;* &nbsp</span>:
-  </span>
-  <span class="r_label">
+    <% if @user.errors[:role_id].present? %>
+      <span class="alert alert-error bold">
+        <%= @user.errors[:role_id].first %>
+      </span> 
+    <% end %>
+    </div>
+  </div>
+  
+    <div class="control-group">
+  <%= f.label :manager, :class => 'control-label' %>
+  <div class="controls">
     <%= f.select :manager_id, options_from_collection_for_select(@manager, "id", "name") %>
-  </span>
+    <% if @user.errors[:manager].present? %>
+      <span class="alert alert-error bold">
+        <%= @user.errors[:manager].first %>
+      </span> 
+    <% end %>
+    </div>
+  </div>
+    <div class="control-group">
+  <%= f.label :date_of_joining, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :date_of_joining, :class => 'text_field datepicker' %>
+    <% if @user.errors[:date_of_joining].present? %>
+      <span class="alert alert-error bold">
+        <%= @user.errors[:date_of_joining].first %>
+      </span> 
+    <% end %>
+    </div>
+  </div>
+  <div class="control-group">
+  <div class="controls">
+    <%=  link_to "Back",employes_path,:class => 'btn btn-default' %>
+      <%=  submit_tag "Enroll",:class => 'btn btn-primary' %>
+  </div>
 </div>
-
-
-<div class="l_row">
-  <span class="l_label">
-    Date of Joining<span class="mandatory"></span>
-  </span>
-  <span class="r_label">
-    <%= f.text_field :joining_date %>
-  </span>
 </div>
+<script>
 
-<div class="l_row">
-  <span class="l_label">
-    Salary<span class="mandatory"></span>
-  </span>
-  <span class="r_label">
-    <%= f.text_field :salary %>
-  </span>
-</div>
+  $(function() {
+    $( ".datepicker" ).datepicker();
+  });
+  </script>

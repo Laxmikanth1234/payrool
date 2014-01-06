@@ -1,8 +1,8 @@
 <div class="bootstrap">
 <h1>Manage Employees</h1>
 <div class="float_r">
-  <% if !current_user.is_employee? %> 
- <%= link_to 'New Employe', new_employe_path,:class => 'btn btn-info' %>
+  <% if current_user.is_admin? %> 
+ <%= link_to 'New Employe', new_user_registration_path,:class => 'btn btn-info' %>
 <% end %>
 </div>
 <br/>

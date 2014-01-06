@@ -12,13 +12,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     build_resource
+    @role = Role.all
+    manager_role = Role.where(:name => "Manager").first
+    @manager = User.where(:role_id => manager_role.id)
+    @manager << User.first if @manager.blank?
+    resource.active = true
     if resource.save
       if @user.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
-        respond_with @user, :location => leaves_path
+        respond_with @user, :location => employes_path
       else
         set_flash_message :notice, :"signed_up_but_#{@user.inactive_message}" if is_navigational_format?
-        respond_with @user, :location => holidays_path
+        respond_with @user, :location => employes_path
       end
     else
       clean_up_passwords @user

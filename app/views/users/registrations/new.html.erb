@@ -1,12 +1,8 @@
-<div class="form_container">
-  <div class ="headline">
-    Enroll Employee
-  </div>
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
-    <%= render 'form', :f => f %>
-    <div class ="bottom_line_wb">
-      <%=submit_tag 'Enroll'%>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<fieledset>
+   <legend> Enroll new employee </legend>
+    <div class="bootstrap">
+       <%= render 'form', :f => f %>
     </div>
-  <% end %>
-</div>
+</fieledset>
+<% end %>
