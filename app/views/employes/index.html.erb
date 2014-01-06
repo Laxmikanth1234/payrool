@@ -1,7 +1,9 @@
 <div class="bootstrap">
 <h1>Manage Employees</h1>
 <div class="float_r">
+  <% if !current_user.is_employee? %> 
  <%= link_to 'New Employe', new_employe_path,:class => 'btn btn-info' %>
+<% end %>
 </div>
 <br/>
 <br/>
@@ -29,7 +31,9 @@
     <td>
      <div style="float:left;">
        <%= link_to image_tag("edit.png",:style => "height:20px;float:left"), edit_employe_path(employe),:rel => "tooltip", :title => "Edit Employee" %> 
-       <%= link_to  image_tag("delete.jpg",:style => "height:20px;float:right"), user_registration_path(employe), confirm: 'Are you sure?', method: :delete,:rel => "tooltip", :title => "Remove Employee" %>
+      <% if !current_user.is_employee? %> 
+        <%= link_to  image_tag("delete.jpg",:style => "height:20px;float:right"), user_registration_path(employe), confirm: 'Are you sure?', method: :delete,:rel => "tooltip", :title => "Remove Employee" %>
+      <% end %>
      </div>
     </td>
   </tr>

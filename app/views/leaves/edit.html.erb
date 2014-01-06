@@ -1,14 +1,10 @@
 <%= form_for(@leave) do |f| %>
-  <div class ="headline">
-    Edit Your Leave
-  </div>
-  <div class="error_msg">
-    <%= render "error_messages", :target => @leave %>
-  </div>
-  <div class="form_container">
-    <%= render 'form', :f => f %>
-    <div class ="bottom_line_wb">
-      <%=  submit_tag "save" %>
+<fieledset>
+   <legend> Edit Leave </legend>
+    <div class="bootstrap">
+       <%= render 'form', :f => f %>
+      
     </div>
-  </div>
+   
+</fieledset>
 <% end %>

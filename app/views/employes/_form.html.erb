@@ -5,6 +5,7 @@
      <li class="active bold"><a href="#basic" id="basic_a" data-toggle="tab">Basic Details</a></li>
      <li class="bold"><a href="#contact" id="contact_a" data-toggle="tab">Other Details</a></li>
      <li class="bold"><a href="#bank" data-toggle="tab">Bank Details</a></li>
+     <li class="bold"><a href="#salary" data-toggle="tab">Salary Details</a></li>
     </ul>
     <div class="tab-content">
       <div class="tab-pane active" id="basic">
@@ -15,6 +16,9 @@
       </div>
       <div class="tab-pane" id="bank">
         <%= render 'bank_details',:f => f %>
+      </div>
+      <div class="tab-pane" id="salary">
+        <%= render 'salary_structure' %>
       </div>
     </div>
  <div class="bootstrap">
@@ -27,7 +31,6 @@
 </div>
 <% if @employe.errors[:first_name].present? || @employe.errors[:last_name].present? || @employe.errors[:number].present? || @employe.errors[:date_of_birth].present? || @employe.errors[:sex].present? %>
  <script> 
-   alert("oyeee")
    $("#basic_a").click();
  </script>
 <% elsif @employe.errors[:email].present? || @employe.errors[:mobile_number].present? || @employe.errors[:pan].present? || @employe.errors[:designation].present? || @employe.errors[:date_of_joining].present? || @employe.errors[:address].present? ||  @employe.errors[:last_down_ctc].present? %>

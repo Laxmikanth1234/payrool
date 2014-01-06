@@ -6,7 +6,6 @@ class CreateHolidays < ActiveRecord::Migration
       t.integer :month
       t.integer :year
       t.string  :reason
-
       t.timestamps
     end
   end

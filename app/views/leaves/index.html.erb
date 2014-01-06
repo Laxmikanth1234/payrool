@@ -1,30 +1,18 @@
-<div class="form_container">
-  <%if @leaves.present? %>
-      <div class ="headline">
-      Your Leave Status
-    </div>
-    <div class="title_bar"  style="color: Fuchsia; font: bold;background-color: #fff">
-      <span style="padding-left: 10px; width:50px"> Slno.</span>
-      <span style="width:130px"> Start Date</span>
-      <span style="width:130px"> End Date </span>
-      <span style="width:150px"> Reason </span>
-      <span style="width:100px"> Status </span>
-      <span style="width:130px"> Action</span>
-    </div>
-    <%  count = 0 %>
-    <%  @leaves.each do |leave| %>
-      <div class="title_bar">
-        <span style="padding-left: 10px; width: 50px"> <%=  count = count + 1 %> </span>
-        <span style="width:130px"> <%=  leave.start_date %></span>
-        <span style="width:130px"> <%=  leave.end_date %></span>
-        <span style="width:150px"> <%=  leave.reason_for_leave.truncate(15) %> </span>
-        <span style="width:100px;color:red"> <%=leave.status%> </span>
-        <span style="width:130px">
-          <%= link_to 'Edit', edit_leafe_path(leave) %> &nbsp;|&nbsp;<%= link_to 'Delete', leafe_path(leave), :method => :delete, :confirm => "You are going to delete a Leave" %>
-        </span>
+<div class="bootstrap">
+  <h1>Manage Leaves</h1>
+  <div class="float_r">
+   <%= link_to 'Apply Leave', new_leafe_path,:class => 'btn btn-info',:rel => "tooltip", :title => "Apply For Leave" %>
+  </div>
+  <ul class="nav nav-tabs">
+     <li class="active bold"><a href="<%= leaves_path %>" >Leaves Applied</a></li>
+     <% if current_user.is_admin? or current_user.is_manager? %>
+      <li class="bold"><a href="<%= leave_to_approve_leaves_path %>" >Leaves To Approve</a></li>
+     <% end %>
+  </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="basic">
+        <%= render 'leaves_applied' %>
       </div>
-    <%end%>
-<% else %>
-  <div> You do not have any pending leaves </div>
-<%  end %>
-</div>
+    </div>
+</div>  
+

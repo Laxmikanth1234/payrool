@@ -5,8 +5,17 @@ class EmployesController < ApplicationController
   # GET /employes
   # GET /employes.json
   def index
-    @employes = User.all
-
+    
+    @employes = User
+    if current_user.is_admin?
+      @employes = @employes.all
+    end
+    if current_user.is_manager?
+      @employes = @employes.where(:manager_id => current_user.id)
+    end
+     if current_user.is_employee?
+      @employes = @employes.where(:id => current_user.id)
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @employes }

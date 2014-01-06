@@ -13,7 +13,8 @@ Payrolles::Application.routes.draw do
       get 'leave_to_approve'
     end
   end
-  resources :employes do
+  resources :employes
+  resources :users do
     resources :salaries
     resources :payrolls
   end

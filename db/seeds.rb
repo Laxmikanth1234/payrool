@@ -26,3 +26,12 @@ User.create(:first_name => "Manager", :email => "manager@viveda.com", :password 
 User.create(:first_name => "Employee", :email => "employee@viveda.com", :password => "test1234",
 :password_confirmation => "test1234", :role_id => 3, :manager_id => 2, :date_of_joining => Date.today,
 :leave_used => 20, :salary => 80000)
+(Date.parse("2013-01-01")..Date.parse("2013-12-31")).each do |x|
+  if x.wday == 5 or x.wday == 6
+    reason = "Sunday"
+    if x.wday == 5
+      reason = "Satday"
+    end
+    Holiday.create(:day => x.day,:month => x.month,:year => x.year,:reason => reason)
+  end
+end

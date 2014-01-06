@@ -1,0 +1,35 @@
+<div class="form-horizontal">
+  <div class="control-group row-fluid form-inline">
+    <%= f.label :professional_tax, :class => 'control-label bold' %>
+    <div class="controls">
+      <%= f.text_field :professional_tax, :class => 'text_field deductions' %>
+      <% if @employe.errors[:professional_tax].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:professional_tax].first %>
+      </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="control-group row-fluid form-inline">
+    <%= f.label :pf, :class => 'control-label bold' %>
+    <div class="controls">
+      <%= f.text_field :pf, :class => 'text_field deductions' %>
+      <% if @employe.errors[:pf].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:pf].first %>
+      </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="control-group row-fluid form-inline">
+    <%= f.label :esi, :class => 'control-label bold' %>
+    <div class="controls">
+      <%= f.text_field :esi, :class => 'text_field deductions' %>
+      <% if @employe.errors[:esi].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:esi].first %>
+      </span>
+      <% end %>
+    </div>
+  </div>
+</div>  

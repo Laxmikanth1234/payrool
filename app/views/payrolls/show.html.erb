@@ -13,21 +13,21 @@
       <table style="width:100%;">
         <tr>
           <td style="width:20%;">Emp No. </td>
-          <td style="width:30%;"><%= @payroll.employe.number %></td>
+          <td style="width:30%;"><%= @payroll.user.number %></td>
           <td style="width:20%;">Bank Name</td>
-          <td style="width:30%;"><%= @payroll.employe.bank_name %></td>
+          <td style="width:30%;"><%= @payroll.user.bank_name %></td>
         </tr>
         <tr>
           <td>Name </td>
-          <td><%= @payroll.employe.name %></td>
+          <td><%= @payroll.user.name %></td>
           <td>Bank A/C No </td>
-          <td><%= @payroll.employe.act_number %></td>
+          <td><%= @payroll.user.act_number %></td>
         </tr>
         <tr>
           <td>Designation </td>
-          <td><%= @payroll.employe.designation %></td>
+          <td><%= @payroll.user.designation %></td>
           <td>DOJ </td>
-          <td><%= @payroll.employe.date_of_joining %></td>
+          <td><%= @payroll.user.date_of_joining %></td>
         </tr>
         <tr>
           <td>Total Working Days </td>
@@ -110,7 +110,7 @@
         </tr>
         <tr>
           <td style="width:16%;">Basic</td>
-          <td style="width:16%;"><%= @payroll.employe.salary.basic_per_month %></td>
+          <td style="width:16%;"><%= @payroll.user.salary.basic_per_month %></td>
           <td style="width:16%;">Basic</td>
           <td style="width:16%;"><%= @payroll.basic %></td>
           <td style="width:16%;">Professional Tax</td>
@@ -118,7 +118,7 @@
         </tr>
         <tr>
           <td>HRA </td>
-          <td><%= @payroll.employe.salary.hra_per_month %></td>
+          <td><%= @payroll.user.salary.hra_per_month %></td>
           <td>HRA</td>
           <td><%= @payroll.hra %></td>
           <td>TDS</td>
@@ -126,7 +126,7 @@
         </tr>
         <tr>
           <td>LTA</td>
-          <td><%= @payroll.employe.salary.travel_per_month %></td>
+          <td><%= @payroll.user.salary.travel_per_month %></td>
           <td>LTA</td>
           <td><%= @payroll.travel %></td>
           <td>ESI</td>
@@ -134,7 +134,7 @@
         </tr>
         <tr>
           <td>Medical Allowances</td>
-          <td><%= @payroll.employe.salary.medical_per_month %></td>
+          <td><%= @payroll.user.salary.medical_per_month %></td>
           <td>Medical Allowances</td>
           <td><%= @payroll.medical %></td>
           <td>Provident Fund</td>
@@ -142,7 +142,7 @@
         </tr>
         <tr>
           <td>Daily Allowances</td>
-          <td><%= @payroll.employe.salary.daily_per_month %></td>
+          <td><%= @payroll.user.salary.daily_per_month %></td>
           <td>Special Allowances</td>
           <td><%= @payroll.daily %></td>
           <td>Advance Salary</td>
@@ -150,19 +150,19 @@
         </tr>
         <tr>
           <td>Others</td>
-          <td><%= @payroll.employe.salary.other_per_month %></td>
+          <td><%= @payroll.user.salary.other_per_month %></td>
           <td>Others</td>
           <td><%= @payroll.other %></td>
         </tr>
         <tr>
           <td>Variable</td>
-          <td><%= @payroll.employe.salary.variable_per_month %></td>
+          <td><%= @payroll.user.salary.variable_per_month %></td>
           <td>Variable</td>
           <td><%= @payroll.variable %></td>
         </tr>
         <tr>
           <td>Gross</td>
-          <td><%= @payroll.employe.salary.gross_per_month %></td>
+          <td><%= @payroll.user.salary.gross_per_month %></td>
           <td>Gross</td>
           <td><%= @payroll.gross %></td>
           <td>Tota Deductions</td>

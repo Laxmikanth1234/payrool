@@ -1,33 +1,52 @@
-<%= form_for [@employe, @payroll] do |f| %>
-  <% if @payroll.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@payroll.errors.count, "error") %> prohibited this payroll from being saved:</h2>
-
-      <ul>
-      <% @payroll.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :advance_salary %><br />
-    <%= f.text_field :advance_salary %>
+<div class="form-horizontal">
+  <div class="control-group">
+   <%= f.label :advance_salary, :class => 'control-label' %>
+   <div class="controls">
+    <%= f.text_field :advance_salary, :class => 'text_field' %>
+    <% if @payroll.errors[:advance_salary].present? %>
+      <span class="alert alert-error bold">
+        <%= @payroll.errors[:advance_salary].first %>
+      </span> 
+    <% end %>
+   </div>
   </div>
-  <div class="field">
-    <%= f.label :total_working_days %><br />
-    <%= f.text_field :total_working_days %>
+  <div class="control-group">
+   <%= f.label :total_working_days, :class => 'control-label' %>
+   <div class="controls">
+    <%= f.text_field :total_working_days, :class => 'text_field' %>
+    <% if @payroll.errors[:total_working_days].present? %>
+      <span class="alert alert-error bold">
+        <%= @payroll.errors[:total_working_days].first %>
+      </span> 
+    <% end %>
+   </div>
   </div>
-  <div class="field">
-    <%= f.label :working_days %><br />
-    <%= f.text_field :working_days %>
+  <div class="control-group">
+   <%= f.label :working_days, :class => 'control-label' %>
+   <div class="controls">
+    <%= f.text_field :working_days, :class => 'text_field' %>
+    <% if @payroll.errors[:working_days].present? %>
+      <span class="alert alert-error bold">
+        <%= @payroll.errors[:working_days].first %>
+      </span> 
+    <% end %>
+   </div>
   </div>
-  <div class="field">
-    <%= f.label :payroll_month_year %><br />
-    <%= f.text_field :payroll_month_year %> (Mmm yyyy) format as of now
+  <div class="control-group">
+   <%= f.label :payroll_month_year, :class => 'control-label' %>
+   <div class="controls">
+    <%= f.text_field :payroll_month_year, :class => 'text_field' %>(MMYYYY)
+    <% if @payroll.errors[:payroll_month_year].present? %>
+      <span class="alert alert-error bold">
+        <%= @payroll.errors[:payroll_month_year].first %>
+      </span> 
+    <% end %>
+   </div>
   </div>
-  <div class="actions">
-    <%= f.submit "Generate Payroll" %>
+  <div class="control-group">
+  <div class="controls">
+    <%= link_to 'Back', edit_employe_path(@employe),:class => "btn" %>
+    <%=  submit_tag "Generate Payroll",:class => 'btn btn-primary' %>
   </div>
-<% end %>
+</div>
+</div>

@@ -1,76 +1,104 @@
+<style>
+.new-one {
+    position: relative;
+    display: inline-block;
+    margin-left: 300px;
+}
+
+.new-two {
+    position: absolute;
+   # margin-left:40px;
+}
+
+.new {
+    background-color: lightgrey;
+    padding: 20px;
+ }
+</style>
 <%= form_for [@employe, @salary] do |f| %>
-  <% if @salary.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@salary.errors.count, "error") %> prohibited this salary from being saved:</h2>
-
-      <ul>
-      <% @salary.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class="container_24 clearfix">
+  <div class="bootstrap">
+    <ul class="nav nav-tabs">
+     <li class="active bold"><a href="#basic" id="basic_a" data-toggle="tab">Earning Details</a></li>
+     <li class="bold"><a href="#contact" id="contact_a" data-toggle="tab">Deductions Details</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="basic">
+        <%= render 'earning_details',:f => f %>
+      </div>
+      <div class="tab-pane" id="contact">
+        <%= render 'deduction_details',:f => f %>
+      </div>
+    </div>  
+  <fieldset>  
+    <legend> Salary Summary</legend>
+    <div class="form-horizontal">
+      <div class="control-group row-fluid form-inline">
+        <div style="display:inline;float:left">
+          <%= f.label :gross, :class => 'control-label bold' %>
+          <div class="controls">
+            <%= f.text_field :gross, :class => 'text_field gross',:readonly => true %>
+          </div>
+        </div>
+        <div style="display:inline;float:left">
+          <%= f.label :total_deductions, :class => 'control-label bold' %>
+          <div class="controls">
+            <%= f.text_field :total_deductions, :class => 'text_field total_ded',:readonly => true %>
+          </div>
+        </div>
+        <div style="display:inline;float:left">
+          <%= f.label :net_salary, :class => 'control-label bold' %>
+          <div class="controls">
+            <%= f.text_field :net_salary, :class => 'text_field net',:readonly => true %>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :basic %><br />
-    <%= f.text_field :basic, :class => "values" %>
-  </div>
-  <div class="field">
-    <%= f.label :hra %><br />
-    <%= f.text_field :hra, :class => "values" %>
-  </div>
-  <div class="field">
-    <%= f.label :travel %><br />
-    <%= f.text_field :travel, :class => "values" %>
-  </div>
-  <div class="field">
-    <%= f.label :daily %><br />
-    <%= f.text_field :daily, :class => "values" %>
-  </div>
-  <div class="field">
-    <%= f.label :medical %><br />
-    <%= f.text_field :medical, :class => "values" %>
-  </div>
-  <div class="field">
-    <%= f.label :other %><br />
-    <%= f.text_field :other, :class => "values" %>
-  </div>
-  <div class="field">
-    <%= f.label :variable %><br />
-    <%= f.text_field :variable, :class => "values" %>
-  </div>
-  <div class="field">
-    <%= f.label :gross %><br />
-    <%= f.text_field :gross  %>
-  </div>
-  <div class="field">
-    <%= f.label :professional_tax %><br />
-    <%= f.text_field :professional_tax, :class => "values" %>
-  </div>
-  <div class="field">
-    <%= f.label :pf %><br />
-    <%= f.text_field :pf, :class => "values" %>
-  </div>
-  <div class="field">
-    <%= f.label :esi %><br />
-    <%= f.text_field :esi, :class => "values" %>
-  </div>
-  <div class="field">
-    <%= f.label :total_deductions %><br />
-    <%= f.text_field :total_deductions, :class => "values" %>
-  </div>
-  <div class="field">
-    <%= f.label :net_salary %><br />
-    <%= f.text_field :net_salary %>
-  </div>
+  </fieldset>
+</div>
+ <div class="bootstrap">
   <div class="actions">
-    <%= f.submit %>
+    <%= link_to 'Go to Employees Page', employes_path,:class => "btn" %>
+    <%= link_to 'Back', edit_employe_path(@employe),:class => "btn" %>
+    <%= f.submit "Create Salary Structure",:class => "btn btn-primary" %>
   </div>
+</div>
 <% end %>
 <script type="text/javascript">
     $(document).ready(function() {
     $(".values").blur(function(){
-      alert("hi");
     });
   });
+</script>
+<script>
+     $(".earnings").change(function(){ 
+        value = parseFloat(0);
+        $.each($('.earnings'), function() {
+          if($(this).val() != ''){
+           value = value + parseFloat($(this).val()); 
+          }
+       });
+       $(".gross").val(value);   
+       gross = parseFloat($(".gross").val());
+       ded =  $(".total_ded").val();
+       net = gross - ded
+       $(".net").val(net);
+    });
+     
+    ded_value = parseFloat(0);
+       $(".deductions").change(function(){ 
+        ded_value = parseFloat(0);
+        $.each($('.deductions'), function() {
+          if($(this).val() != ''){
+           ded_value = ded_value + parseFloat($(this).val()); 
+          }
+       });
+       $(".total_ded").val(ded_value);
+       gross = parseFloat($(".gross").val());
+       ded =  $(".total_ded").val();
+       net = gross - ded
+       $(".net").val(net);
+    });
+    
+
 </script>

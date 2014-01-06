@@ -3,7 +3,7 @@ class PayrollsController < ApplicationController
   # GET /payrolls.json
   def index
     @payrolls = Payroll.all
-    @employe = Employe.find_by_id(params[:employe_id])
+    @employe = User.find_by_id(params[:user_id])
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -13,7 +13,7 @@ class PayrollsController < ApplicationController
   # GET /payrolls/1.json
   def show
     @payroll = Payroll.find(params[:id])
-    @employe = Employe.find_by_id(params[:employe_id])
+    @employe = User.find_by_id(params[:user_id])
     respond_to do |format|
       format.html # show.html.erb
       format.pdf { render :pdf => "#{@employe.name}",
@@ -27,7 +27,7 @@ class PayrollsController < ApplicationController
   # GET /payrolls/new.json
   def new
     @payroll = Payroll.new
-    @employe = Employe.find_by_id(params[:employe_id])
+    @employe = User.find_by_id(params[:user_id])
     respond_to do |format|
       format.html # new.html.erb
     end
@@ -36,13 +36,13 @@ class PayrollsController < ApplicationController
   # GET /payrolls/1/edit
   def edit
     @payroll = Payroll.find(params[:id])
-    @employe = Employe.find_by_id(params[:employe_id])
+    @employe = User.find_by_id(params[:user_id])
   end
 
   # POST /payrolls
   # POST /payrolls.json
   def create
-    @employe = Employe.find_by_id(params[:employe_id])
+    @employe = User.find_by_id(params[:user_id])
     @payroll = @employe.payrolls.new(params[:payroll])
     @payroll.calculate_salary(@employe.salary)
     respond_to do |format|
@@ -58,7 +58,7 @@ class PayrollsController < ApplicationController
   # PUT /payrolls/1.json
   def update
     @payroll = Payroll.find(params[:id])
-    @employe = Employe.find_by_id(params[:employe_id])
+    @employe = User.find_by_id(params[:user_id])
     @payroll.calculate_salary(@employe.salary)
     respond_to do |format|
       if @payroll.update_attributes(params[:payroll])

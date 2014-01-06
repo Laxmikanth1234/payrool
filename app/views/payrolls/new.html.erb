@@ -1,5 +1,8 @@
-<h1>New payroll</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', @employe %>
+<%= form_for [@employe, @payroll] do |f| %>
+<fieledset>
+   <legend> Generate  Payslip </legend>
+    <div class="bootstrap">
+       <%= render 'form', :f => f %>
+    </div>
+</fieledset>
+<% end %>

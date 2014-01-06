@@ -1,0 +1,48 @@
+<table class="table table-striped table-bordered" style="width:80%">
+  <thead>
+    <th> Slno. </th>
+    <th> Start Date </th>
+    <th> End Date </th>
+    <th> Reason </th>
+    <th> Status </th>
+    <th> </th>
+  </thead>
+  <%  count = 0 %>
+  <% @leaves.each do |leave| %>
+   <tbody>
+    <td style="width:80px;">
+       <%=  count = count + 1 %>
+    </td>
+    <td style="width:100px;">
+      <%=  leave.start_date %>
+    </td>
+    <td style="width:100px;">
+      <%=  leave.end_date %>
+    </td>
+    <td>
+      <%=  leave.reason_for_leave %>
+    </td>
+    <td style="width:100px;">
+    <% if leave.status == 'Approved' %>
+      <div class="label label-success">
+    <% end %>
+    <% if leave.status == 'pending' %>
+      <div class="label label-warning">
+    <% end %>
+    <% if leave.status == 'Rejected' %>
+      <div class="label label-danger">
+    <% end %>
+      <%=leave.status%>
+    </div>
+    </td>
+    <td style="width:100px;">
+      <div style="float:left;">
+       <% if leave.status == 'pending' %>  
+        <%= link_to image_tag("edit.png",:style => "height:20px;float:left"), edit_leafe_path(leave),:rel => "tooltip", :title => "Edit Leave" %> 
+        <%= link_to  image_tag("delete.jpg",:style => "height:20px;float:right"), leafe_path(leave), confirm: 'Are you sure?', method: :delete,:rel => "tooltip", :title => "Remove Leave" %>
+       <% end %>
+     </div>
+    </td>
+  </tbody>
+  <% end %>
+</table>

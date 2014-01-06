@@ -12,7 +12,7 @@ class HolidaysController < ApplicationController
       @date = (params[:next].blank? && params[:prev].blank?)? Date.today : shift_calender
     end
     @days = @holiday.days_array(@date)
-    @holiday = Holiday.where(:month => @date.month, :year => @date.year).map(&:day)
+    @holiday = Holiday.where(:month => @date.month, :year => @date.year)
   end
 
   def create

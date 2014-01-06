@@ -1,0 +1,80 @@
+
+<div class="form-horizontal">
+  <div class="control-group row-fluid form-inline">
+    <%= f.label :basic, :class => 'control-label bold' %>
+    <div class="controls">
+      <%= f.text_field :basic, :class => 'text_field earnings' %>
+      <% if @employe.errors[:basic].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:basic].first %>
+      </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="control-group row-fluid form-inline">
+    <%= f.label :hra, :class => 'control-label bold' %>
+    <div class="controls">
+      <%= f.text_field :hra, :class => 'text_field earnings' %>
+      <% if @employe.errors[:hra].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:hra].first %>
+      </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="control-group row-fluid form-inline">
+    <%= f.label :travel_allowance, :class => 'control-label bold' %>
+    <div class="controls">
+      <%= f.text_field :travel, :class => 'text_field earnings' %>
+      <% if @employe.errors[:travel].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:travel].first %>
+      </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="control-group row-fluid form-inline">
+    <%= f.label :daily_allowance, :class => 'control-label bold' %>
+    <div class="controls">
+      <%= f.text_field :daily, :class => 'text_field earnings' %>
+      <% if @employe.errors[:daily].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:daily].first %>
+      </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="control-group row-fluid form-inline">
+    <%= f.label :medical_allowance, :class => 'control-label bold' %>
+    <div class="controls">
+      <%= f.text_field :medical, :class => 'text_field earnings' %>
+      <% if @employe.errors[:medical].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:medical].first %>
+      </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="control-group row-fluid form-inline">
+    <%= f.label :other_allowance, :class => 'control-label bold' %>
+    <div class="controls">
+      <%= f.text_field :other, :class => 'text_field earnings' %>
+      <% if @employe.errors[:other].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:other].first %>
+      </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="control-group row-fluid form-inline">
+    <%= f.label :variable_pay, :class => 'control-label bold' %>
+    <div class="controls">
+      <%= f.text_field :variable, :class => 'text_field earnings' %>
+      <% if @employe.errors[:variable].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:variable].first %>
+      </span>
+      <% end %>
+    </div>
+  </div>  
+</div>

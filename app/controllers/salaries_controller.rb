@@ -3,7 +3,7 @@ class SalariesController < ApplicationController
   # GET /salaries.json
   def index
     @salaries = Salary.all
-    @employe = Employe.find_by_id(params[:employe_id])
+    @employe = User.find_by_id(params[:user_id])
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -13,7 +13,7 @@ class SalariesController < ApplicationController
   # GET /salaries/1.json
   def show
     @salary = Salary.find(params[:id])
-    @employe = Employe.find_by_id(params[:employe_id])
+    @employe = User.find_by_id(params[:user_id])
     respond_to do |format|
       format.html # show.html.erb
     end
@@ -23,7 +23,7 @@ class SalariesController < ApplicationController
   # GET /salaries/new.json
   def new
     @salary = Salary.new
-    @employe = Employe.find_by_id(params[:employe_id])
+    @employe = User.find_by_id(params[:user_id])
     respond_to do |format|
       format.html # new.html.erb
     end
@@ -32,13 +32,13 @@ class SalariesController < ApplicationController
   # GET /salaries/1/edit
   def edit
     @salary = Salary.find(params[:id])
-    @employe = Employe.find_by_id(params[:employe_id])
+    @employe = User.find_by_id(params[:user_id])
   end
 
   # POST /salaries
   # POST /salaries.json
   def create
-    @employe = Employe.find_by_id(params[:employe_id])
+    @employe = User.find_by_id(params[:user_id])
     @employe.salaries.each do |s|
       s.active=0
       s.save!

@@ -22,12 +22,14 @@
 //= require bootstrap-modal
 //= require bootstrap-modalmanager
 
-    var browse_calender = function()
+    var browse_calender = function(a)
     {
         jQuery("table a").click(function(){
         val_at = $(this).attr('id');
         current_day = "day_"+val_at;
-        if ($("#"+current_day).val()== "")
+        if(a == 'true')
+        {
+          if ($("#"+current_day).val()== "" )
             {
                 $("#"+current_day).val(val_at);
                 $(this).addClass('set');
@@ -37,6 +39,8 @@
                 $("#"+current_day).val('');
                 $(this).removeClass('set');
             }
+        }
+        
         })
     }
 

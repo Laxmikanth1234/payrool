@@ -1,6 +1,6 @@
 class Payroll < ActiveRecord::Base
   attr_accessible :advance_salary, :basic, :daily, :employe, :esi, :gross, :hra, :medical, :net_salary, :other, :payroll_month_year, :pf, :professional_tax, :tds, :total_deductions, :total_working_days, :travel, :variable, :working_days
-  belongs_to :employe
+  belongs_to :user
 
   def calculate_salary(salary)
     puts salary.inspect
@@ -26,15 +26,19 @@ class Payroll < ActiveRecord::Base
   end
 
   def tds_calculation(salary)
-    exemption = 200000
-    lta = 30000
-    mediacal = 15000
-    conveyance = 9600
-    total_exemptions = exemption + lta + mediacal + conveyance
-    total_income = salary.net_salary
-    taxable_amt = (total_income - total_exemptions.to_d)/12
-    tax = taxable_amt * 0.1
-    cess = tax * 0.03
-    return tax + cess
+    if(salary.net_salary*12 > 200000) 
+      exemption = 200000
+      lta = 30000
+      mediacal = 15000
+      conveyance = 9600
+      total_exemptions = exemption + lta + mediacal + conveyance
+      total_income = salary.net_salary
+      taxable_amt = (total_income - total_exemptions.to_d)/12
+      tax = taxable_amt * 0.1
+      cess = tax * 0.03
+      return tax + cess
+    else
+      return 0
+    end
   end
 end

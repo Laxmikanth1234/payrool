@@ -49,9 +49,13 @@ border-bottom: 0px;
     </div>  
     <div class="menu" style="float:left;width:50%;color:white;margin:20px 40px 0px 50px;">
      <ul> 
-      <li> <a href="#" class="btn-default" style="font-size: 13pt;">Manage Employees</a></li>  
-      <li> <a href="#" class="btn-default" style="font-size: 13pt;">Manage Leaves</a></li>
-      <li> <a href="#" class="btn-default" style="font-size: 13pt;">Manage Holidays</a></li>
+      <li> <a href="<%= employes_path %>" class="<%= controller_name == 'employes' ? 'btn-info'  : '' %> btn-default " style="font-size: 13pt;">Manage Employees</a></li>  
+      <li> <a href="<%= leaves_path %>" class="<%= controller_name == 'leaves' ? 'btn-info'  : '' %> btn-default" style="font-size: 13pt;">Manage Leaves</a></li>
+      <% if current_user.is_admin? %>
+        <li> <a href="<%= holidays_path %>" class="<%= controller_name == 'holidays' ? 'btn-info'  : '' %> btn-default" style="font-size: 13pt;">Manage Holidays</a></li>
+      <% else %>  
+         <li> <a href="<%= holidays_path %>" class="<%= controller_name == 'holidays' ? 'btn-info'  : '' %> btn-default" style="font-size: 13pt;">Holidays Calender</a></li>
+      <% end %>
     </ul>
     </div>
     <div style="float:left;">

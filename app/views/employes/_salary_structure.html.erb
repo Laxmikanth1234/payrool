@@ -1,0 +1,160 @@
+<div class="bootstrap">
+  <div class="panel panel-default" style="widtd:50%">
+    <!-- Default panel contents -->
+    <div class="panel-heading bold">
+      Salary Structure Details
+      <% if @employe.salary.present?%>
+      <%= link_to image_tag("edit.png",:style => "height:20px;float:left"), url_for([:edit, @employe, @employe.salary]),:rel => "tooltip", :title => "Edit Employee" %> 
+      <% end %>
+      <div style="float:right">
+        <%= link_to 'Add Appraisal', new_user_salary_path(@employe),:class=>"btn btn-info" %> 
+        <% if @employe.salary.present?%>
+          <%= link_to 'Add Payroll', new_user_payroll_path(@employe),:class=>"btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+     <% if @employe.salary.present?%>
+      <table class="table" style="widtd:80%" border="1">
+        <tr>
+          <td width="40%">
+            <table border="1">
+              <tr>
+                <td colspan = "2">
+                  Earnings
+                </td>
+              </tr>  
+              <tr>
+                <td>
+                  Basic
+                </td>
+                <td  >
+                  <%=@employe.salary.basic %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  HRA
+                </td>
+                 <td  >
+                  <%=@employe.salary.hra %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Travel
+                </td>
+                <td  >
+                  <%=@employe.salary.travel %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Daily
+                </td>
+                <td  >
+                  <%=@employe.salary.travel %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Medical
+                </td>
+                <td  >
+                  <%=@employe.salary.medical %>
+                </td>
+              </tr>
+               <tr>
+                <td>
+                  Otder
+                </td>
+                <td  >
+                  <%=@employe.salary.other %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Variable
+                </td>
+                <td  >
+                  <%=@employe.salary.variable %>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <div style="float:right">
+                   Gross : 
+                  </div>
+                </th>
+                <th>
+                  <%=@employe.salary.gross %>
+                </th>
+              </tr>
+            </table>
+          </td>
+          <td width="40%">
+           <table border="1" >
+            <tr>
+                <td colspan = "2">
+                  Deductions
+                </td>
+              </tr>  
+              <tr>
+                <td>
+                  Professional tax
+                </td>
+                 <td  >
+                  <%=@employe.salary.professional_tax %>
+                </td>
+              </tr>  
+               <tr>
+                <td>
+                  P.F
+                </td>
+                <td  >
+                  <%=@employe.salary.pf %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  ESI
+                </td>
+                <td  >
+                  <%=@employe.salary.esi %>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <div style="float:right">
+                   Total Deductions : 
+                  </div>
+                </th>
+                <th>
+                  <%=@employe.salary.total_deductions %>
+                </th>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="2">
+            Net Salary
+            &nbsp;
+            &nbsp;
+            <%= @employe.salary.net_salary %>
+          </th>
+        </tr>
+      </table>
+      <% else %>
+       <table class="table" style="widtd:80%" border="1">
+        <tr>
+          <th>
+            Salary Details not Added yet. Please click on
+            <%= link_to 'Add Appraisal', new_user_salary_path(@employe),:class=>"btn btn-info" %> 
+            to add salary details.
+          </th>
+        </tr>
+      </table>
+      <%end%>
+    </div>
+  </div>
+</div>

@@ -12,23 +12,16 @@
   <tr>
    <%col_no=1%>
 <%week.each do |week_day|%>
-    <% if col_no == 6 || col_no == 7 %>
+    
     <td  class ="col_<%= col_no %>">
-      <span><%=week_day%></span>
-      <%=hidden_field_tag "day[#{week_day}]", week_day %>
-    </td>
-    <%else%>
-    <td  class ="col_<%= col_no %>">
-      <%  if @holiday.include?(week_day) %>
+      <%  if @holiday.map(&:day).include?(week_day) %>
         <a id="<%=week_day%>" href="javascript:void(0)" class="set"><%=week_day%></a>
         <%=hidden_field_tag "day[#{week_day}]", week_day %>
       <% else %>
           <a id="<%=week_day%>" href="javascript:void(0)" ><%=week_day%></a>
           <%=hidden_field_tag "day[#{week_day}]"%>
       <% end %>
-      
     </td>
-    <%end%>
     <%col_no = col_no + 1%>
     <%end%>
   </tr>
@@ -40,5 +33,5 @@
 <%=  hidden_field_tag 'next', @next %>
 
 <script type="text/javascript">
-browse_calender()
+browse_calender("<%= current_user.is_admin? %>")
 </script>
