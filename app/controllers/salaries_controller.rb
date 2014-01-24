@@ -47,7 +47,7 @@ class SalariesController < ApplicationController
 
     respond_to do |format|
       if @salary.save
-        format.html { redirect_to @employe, notice: 'Salary was successfully created.' }
+        format.html { redirect_to edit_employe_path(@employe), notice: 'Salary was successfully created.' }
       else
         format.html { redirect_to request.env['HTTP_REFERER'] }
       end

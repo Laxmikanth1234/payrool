@@ -3,13 +3,16 @@
     <!-- Default panel contents -->
     <div class="panel-heading bold">
       Salary Structure Details
-      <% if @employe.salary.present?%>
+      <% if @employe.salary.present? && !current_user.is_employee? %>
       <%= link_to image_tag("edit.png",:style => "height:20px;float:left"), url_for([:edit, @employe, @employe.salary]),:rel => "tooltip", :title => "Edit Employee" %> 
       <% end %>
+
       <div style="float:right">
+        <% if !current_user.is_employee? %>
         <%= link_to 'Add Appraisal', new_user_salary_path(@employe),:class=>"btn btn-info" %> 
-        <% if @employe.salary.present?%>
+        <% if @employe.salary.present? && !current_user.is_employee? %>
           <%= link_to 'Add Payroll', new_user_payroll_path(@employe),:class=>"btn btn-primary" %>
+        <% end %>
         <% end %>
       </div>
     </div>
@@ -148,9 +151,12 @@
        <table class="table" style="widtd:80%" border="1">
         <tr>
           <th>
-            Salary Details not Added yet. Please click on
+            Salary Details not Added yet.
+            <% if !current_user.is_employee? %>
+            Please click on
             <%= link_to 'Add Appraisal', new_user_salary_path(@employe),:class=>"btn btn-info" %> 
             to add salary details.
+            <% end %>
           </th>
         </tr>
       </table>

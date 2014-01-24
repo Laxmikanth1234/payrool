@@ -1,5 +1,9 @@
 <div class="bootstrap">
-<h1>Manage Employees</h1>
+<% if !current_user.is_employee? %>
+  <h1>Manage Employees</h1>
+  <% else %>
+  <h1>Your Details</h1>
+<% end %>
 <div class="float_r">
   <% if current_user.is_admin? %> 
  <%= link_to 'New Employe', new_user_registration_path,:class => 'btn btn-info' %>
@@ -15,26 +19,35 @@
     <th>Email</th>
     <th>Date of Joining</th>
     <th>Mobile Number</th>
-    <th>Active</th>
+    <th>Active/Status</th>
+    <th>Reporting Manager</th>
     <th>Actions</th>
   </tr>
 </thead>
 <tbody>
 <% @employes.each do |employe| %>
   <tr>
-    <td><%= employe.id %></td>
+    <td><%= employe.number %></td>
     <td><%= employe.first_name %> <%= employe.middle_name %> <%= employe.last_name %></td>
     <td><%= employe.email %></td>
-    <td><%= employe.date_of_joining %></td>
+    <td><%= employe.date_of_joining.strftime("%d/%m/%Y") %></td>
     <td><%= employe.mobile_number %></td>
-    <td><%= employe.active ? "Yes" : "No" %></td>
+    <td><%= employe.active ? "Yes" : "No" %> <%= employe.employement_status %></td>
+    <td><%= employe.reporting_manager %>  </td>
     <td>
-     <div style="float:left;">
-       <%= link_to image_tag("edit.png",:style => "height:20px;float:left"), edit_employe_path(employe),:rel => "tooltip", :title => "Edit Employee" %> 
-      <% if !current_user.is_employee? %> 
-        <%= link_to  image_tag("delete.jpg",:style => "height:20px;float:right"), user_registration_path(employe), confirm: 'Are you sure?', method: :delete,:rel => "tooltip", :title => "Remove Employee" %>
+     <div style="float:left;padding-left: 10px;">
+      <% if employe.salary.present? && current_user.is_admin? %>
+        <%= link_to image_tag("icon-payroll.png", :style => "width:60px;height:35px"), new_user_payroll_path(employe), :rel => "tooltip", :title => "Employee Payroll" %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <% end %>
      </div>
+      <div style="float:left;padding-left: 10px;">
+        <%= link_to image_tag("edit.png",:style => "height:20px;"), edit_employe_path(employe),:rel => "tooltip", :title => current_user.is_admin? ? "Edit Employee" : 'View Details' %>
+      </div>
+     <div style="float:left;padding-left: 10px;">
+        <% if current_user.is_admin? %>
+          <%= link_to  image_tag("delete.jpg",:style => "height:20px;"), user_registration_path(employe), confirm: 'Are you sure?', method: :delete,:rel => "tooltip", :title => "Remove Employee" %>
+        <% end %>
+      </div>
     </td>
   </tr>
 <% end %>

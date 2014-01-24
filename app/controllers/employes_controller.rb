@@ -8,10 +8,10 @@ class EmployesController < ApplicationController
     
     @employes = User
     if current_user.is_admin?
-      @employes = @employes.all
+      @employes = @employes.where("id != ? ",current_user.id).all
     end
     if current_user.is_manager?
-      @employes = @employes.where(:manager_id => current_user.id)
+      @employes = @employes.where(:manager_id => current_user.id).where("id != ? ",current_user.id)
     end
      if current_user.is_employee?
       @employes = @employes.where(:id => current_user.id)
@@ -47,16 +47,20 @@ class EmployesController < ApplicationController
   # GET /employes/1/edit
   def edit
     @employe = User.find(params[:id])
+    @role = Role.all
+    manager_role = Role.where(:name => "Manager").first
+    @manager = User.where(:role_id => manager_role.id)
+    @manager << User.first if @manager.blank?
   end
 
   # POST /employes
   # POST /employes.json
   def create
-    @employe = Employe.new(params[:employe])
+    @employe = Employe.new(params[:user])
 
     respond_to do |format|
       if @employe.save
-        format.html { redirect_to @employe, notice: 'Employe was successfully created.' }
+        format.html { redirect_to redirect_to edit_employe_path(@employe), notice: 'Employe was successfully created.' }
         format.json { render json: @employe, status: :created, location: @employe }
       else
         format.html { render action: "new" }
@@ -69,10 +73,9 @@ class EmployesController < ApplicationController
   # PUT /employes/1.json
   def update
     @employe = User.find(params[:id])
-
     respond_to do |format|
-      if @employe.update_attributes(params[:employe])
-        format.html { redirect_to @employe, notice: 'Employe was successfully updated.' }
+      if @employe.update_attributes(params[:user])
+        format.html { redirect_to edit_employe_path(@employe), notice: 'Employe was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

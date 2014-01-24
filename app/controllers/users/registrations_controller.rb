@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_filter :require_no_authentication, :only => [:cancel ]
-  before_filter :require_admin, :only => [:create, :new ]
+#  before_filter :require_admin, :only => [:create, :new ]
   def new
     resource = build_resource({})
     @role = Role.all

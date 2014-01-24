@@ -11,6 +11,30 @@
   </div>
 </div>
 <div class="control-group row-fluid form-inline">
+  <%= f.label :active, :class => 'control-label bold' %>
+  <div class="controls">
+    <%= f.select :active, [["Active",true],["Inactive",false]] %>
+     <% if @employe.errors[:active].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:active].first %>
+      </span>
+    <% end %>
+  </div>
+</div>
+<div class="control-group row-fluid form-inline">
+  <%= f.label :employement_status, :class => 'control-label bold' %>
+  <div class="controls">
+    <%= f.select :employement_status, ["Probation","Confirmed","Terminated","Absconded","Resigned"] %>
+     <% if @employe.errors[:employement_status].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:employement_status].first %>
+      </span>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="control-group row-fluid form-inline">
   <%= f.label :first_name, :class => 'control-label bold' %>
   <div class="controls">
     <%= f.text_field :first_name, :class => 'text_field' %>
@@ -65,5 +89,15 @@
     <% end %>
   </div>
 </div>
-
+  <div class="control-group">
+  <%= f.label :manager, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.select :manager_id, options_from_collection_for_select(@manager, "id", "name") %>
+    <% if @employe.errors[:manager].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:manager].first %>
+      </span>
+    <% end %>
+    </div>
+  </div>
 </div>

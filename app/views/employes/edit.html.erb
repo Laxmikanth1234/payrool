@@ -1,3 +1,21 @@
-<h1>Edit employe</h1>
-<%= render 'form' %>
+<h1>Edit employee</h1>
 
+<div class="container_24 clearfix">
+<%= form_for(@employe,:url => employe_path(@employe),:method => :put) do |f| %>
+  <%= render 'form',:f => f %>
+ <% end %>
+</div>
+<% if @employe.errors[:first_name].present? || @employe.errors[:last_name].present? || @employe.errors[:number].present? || @employe.errors[:date_of_birth].present? || @employe.errors[:sex].present? %>
+ <script>
+   $("#basic_a").click();
+ </script>
+<% elsif @employe.errors[:email].present? || @employe.errors[:mobile_number].present? || @employe.errors[:pan].present? || @employe.errors[:designation].present? || @employe.errors[:date_of_joining].present? || @employe.errors[:address].present? ||  @employe.errors[:last_down_ctc].present? %>
+ <script>
+   $("#contact_a").click();
+ </script>
+<% end %>
+<script>
+  $(function() {
+    $( ".datepicker" ).datepicker();
+  });
+  </script>
