@@ -16,3 +16,5 @@ gem 'xml-simple'
 gem 'jquery-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'prawn'
+gem "rmagick"
+gem "carrierwave"

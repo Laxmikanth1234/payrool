@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   validates :email, :first_name, :manager_id, :role_id, :presence => true
   has_many :salaries, :order => "created_at desc", :dependent => :destroy
   has_many :payrolls, :order => "created_at desc", :dependent => :destroy
-
+  mount_uploader :image, ImageUploader
+  
   def is_admin?
     self.role.name.downcase == "admin" if self.role_id
   end

@@ -1,4 +1,25 @@
+
 <div class="form-horizontal">
+  <div class="control-group row-fluid form-inline">
+<% if @employe.image.present?%>
+<div>
+ <%= image_tag @employe.image_url,:style => 'margin-left:120px;height:125px;width:125px;' %>
+</div>
+<% end %>
+</div>
+<div class="control-group row-fluid form-inline">
+  
+  <%= f.label :image, :class => 'control-label bold' %>
+  <div class="controls">
+    <%= f.file_field :image, :class => 'text_field' %>
+    <% if @employe.errors[:image].present? %>
+      <span class="alert alert-error bold">
+        <%= @employe.errors[:image].first %>
+      </span> 
+    <% end %>
+  </div>
+
+</div>  
 <div class="control-group row-fluid form-inline">
   <%= f.label :number, :class => 'control-label bold' %>
   <div class="controls">
@@ -101,3 +122,10 @@
     </div>
   </div>
 </div>
+
+  
+  
+
+
+
+
