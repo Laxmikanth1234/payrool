@@ -7,7 +7,7 @@
      <% end %>
      <li class="bold"><a href="#salary" data-toggle="tab">Salary Details</a></li>
     </ul>
-    <div class="tab-content">
+    <div class="tab-content" id="emp_form">
       <div class="tab-pane active" id="basic">
         <%= render 'basic_details',:f => f %>
       </div>
@@ -28,6 +28,11 @@
     <%= link_to 'Go to Employees Page', employes_path,:class => "btn" %>
     <% if current_user.is_admin? %>
     <%= f.submit "Save Details",:class => "btn btn-primary" %>
+    <% end %>
+    <% if !current_user.is_admin? %>
+     <script>
+      $("#emp_form").find("input,textarea,select").attr("disabled", "disabled");
+     </script>
     <% end %>
   </div>
 </div>
