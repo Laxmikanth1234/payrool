@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140206171722) do
+ActiveRecord::Schema.define(:version => 20140206171723) do
 
   create_table "employes", :force => true do |t|
     t.string   "number"
@@ -118,15 +118,16 @@ ActiveRecord::Schema.define(:version => 20140206171722) do
 
   create_table "time_sheets", :force => true do |t|
     t.integer  "user_id"
+    t.integer  "manager_id"
+    t.string   "status"
+    t.text     "logged_hours"
     t.integer  "month"
     t.integer  "year"
-    t.integer  "total_hours"
-    t.string   "status"
     t.date     "start_date"
     t.date     "end_date"
-    t.text     "logged_hours", :default => "{}"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.text     "remarks"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "users", :force => true do |t|

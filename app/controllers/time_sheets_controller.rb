@@ -3,7 +3,7 @@ class TimeSheetsController < ApplicationController
   # GET /time_sheets.json
   def index
     @time_sheets = TimeSheet.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @time_sheets }
@@ -24,8 +24,8 @@ class TimeSheetsController < ApplicationController
   # GET /time_sheets/new
   # GET /time_sheets/new.json
   def new
-    @time_sheet = TimeSheet.new
-
+    @time_sheet = TimeSheet.new(user_id: current_user.id,manager_id: current_user.manager_id, start_date: Date.today.beginning_of_month, end_date: Date.today.end_of_month, month: Date.today.strftime("%m"), year: Date.today.strftime("Y"),status: "New")
+    @time_sheet.save!
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @time_sheet }

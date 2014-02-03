@@ -1,0 +1,44 @@
+hiiiiiiiiiiii <%= time_sheet.logged_hours %> hello
+<table class="table table-striped table-bordered" style="width:50%">
+  <tr>
+    <td style="max-width:15px;">
+      Mon
+    </td>
+    <td style="max-width:20px;">
+      Tue
+    </td>
+    <td style="max-width:20px;">
+      Wed
+    </td>
+    <td style="max-width:20px;">
+      Thus
+    </td>
+    <td style="max-width:20px;">
+      Fri
+    </td>
+    <td style="max-width:20px;">
+      Sat
+    </td>
+    <td style="max-width:20px;">
+      Sun
+    </td>
+  </tr>
+  
+<% calender_view(time_sheet).each do |p| %>
+  <tr>
+    <% p.each do |y| %>
+      <td style="max-width:20px;">
+        <% if y.present? %>
+         <%= y.strftime("%d") %>
+          <%  if y == Date.today %>
+            <%= f.text_field "logged_hours[]",:disabled => "disabled",:size => 2 %>
+          <% else %>
+            <%= f.text_field "logged_hours[]",:disabled => "disabled",:size => 2 %>
+          <% end %>
+          
+        <% end %>
+      </td>
+     <% end %>
+  </tr>
+<% end %>
+</table>
