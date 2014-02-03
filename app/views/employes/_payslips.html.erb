@@ -1,0 +1,23 @@
+<div class="control-group row-fluid form-inline">
+  PaySlip Month
+  <div class="controls">
+    <select name="payslip_month" id="payslip_month">
+    <% current_user.payrolls.each do |pr| %>
+    <option value="<%= pr.id %>"> <%= pr.payroll_month_year %></option>
+    <% end %>
+    </select>
+  </div>
+</div>
+<div id="payslip_div">
+</div>
+
+<script>
+  $("#payslip_month").change(function(){ 
+      $.ajax({
+    type : 'get',
+    url : "/payrolls/"+ $(this).val()+".js" ,
+    dataType : 'script'
+
+  });
+    });
+</script>

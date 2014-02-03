@@ -1,0 +1,2 @@
+$('#payslip_div').html("");
+$('#payslip_div').append("<%= escape_javascript render(:partial => 'payroll', :locals => { :payroll => @payroll }) %>");

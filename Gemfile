@@ -16,6 +16,8 @@ gem 'xml-simple'
 gem 'jquery-rails'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'prawn'
+gem 'prawnto'
+gem 'wicked_pdf'
 gem 'imgkit',        '1.0.1'
 gem 'mini_magick',   '3.3'
 gem 'carrierwave',   '0.7.1'

@@ -6,6 +6,8 @@
      <li class="bold"><a href="#bank" data-toggle="tab">Bank Details</a></li>
      <% end %>
      <li class="bold"><a href="#salary" data-toggle="tab">Salary Details</a></li>
+    <li class="bold"><a href="#payslip" data-toggle="tab">Pay Slips</a></li>
+     
     </ul>
     <div class="tab-content" id="emp_form">
       <div class="tab-pane active" id="basic">
@@ -14,13 +16,14 @@
       <div class="tab-pane" id="contact">
         <%= render 'other_details',:f => f %>
       </div>
-      <% if current_user.is_admin? %>
-      <div class="tab-pane" id="bank">
+       <div class="tab-pane" id="bank">
         <%= render 'bank_details',:f => f %>
       </div>
-      <% end %>
       <div class="tab-pane" id="salary">
-        <%= render 'salary_structure' %>
+        <%= render 'salary_structure',:f => f %>
+      </div>
+      <div class="tab-pane" id="payslip">
+        <%= render 'payslips',:f => f %>
       </div>
     </div>
  <div class="bootstrap">
@@ -31,8 +34,12 @@
     <% end %>
     <% if !current_user.is_admin? %>
      <script>
-      $("#emp_form").find("input,textarea,select").attr("disabled", "disabled");
+      $("#emp_form").find("input,textarea").attr("disabled", "disabled");
+      $("#payslip_month").removeAttr('disabled')
      </script>
     <% end %>
+     <% if @employe.salary.present? && current_user.is_admin? %>
+          <%= link_to 'Generate Payroll', new_user_payroll_path(@employe),:class=>"btn btn-primary" %>
+        <% end %>
   </div>
 </div>

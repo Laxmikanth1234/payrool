@@ -1,7 +1,14 @@
 Payrolles::Application.routes.draw do
+  resources :time_sheets
+
+
   get "password_resets/new"
 
-  resources :payrolls
+  resources :payrolls do
+    collection do
+      get 'generate_payroll'
+    end
+  end
   resources :salaries
   devise_for :users,  :controllers => { :registrations => "users/Registrations" }
   root :to => "employes#index"

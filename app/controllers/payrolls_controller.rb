@@ -8,6 +8,20 @@ class PayrollsController < ApplicationController
       format.html # index.html.erb
     end
   end
+  
+  
+  def generate_payroll
+    @employes = User
+    if current_user.is_admin?
+      @employes = @employes.where("id != ? ",current_user.id).all
+    end
+    if current_user.is_manager?
+      @employes = @employes.where(:manager_id => current_user.id).where("id != ? ",current_user.id)
+    end
+    respond_to do |format|
+      format.html # index.html.erb
+    end
+  end
 
   # GET /payrolls/1
   # GET /payrolls/1.json
@@ -16,6 +30,7 @@ class PayrollsController < ApplicationController
     @employe = User.find_by_id(params[:user_id])
     respond_to do |format|
       format.html # show.html.erb
+      format.js
       format.pdf { render :pdf => "#{@employe.name}",
                           :layout => false,
                           :orientation => 'landscape'

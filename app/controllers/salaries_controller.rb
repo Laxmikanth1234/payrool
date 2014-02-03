@@ -61,7 +61,7 @@ class SalariesController < ApplicationController
 
     respond_to do |format|
       if @salary.update_attributes(params[:salary])
-        format.html { redirect_to @salary, notice: 'Salary was successfully updated.' }
+        fformat.html { redirect_to edit_employe_path(@employe), notice: 'Salary was successfully upated.' }
       else
         format.html { render action: "edit" }
       end
