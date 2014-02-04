@@ -1,9 +1,19 @@
 <h1>Time Sheets</h1>
-<%= link_to 'Start Time Log', new_time_sheet_path %> For <%= DateTime.now.strftime("%B %Y") %>
-<table class="table table-striped table-bordered">
+
+<% if @time_sheet %>
+<div>
+  <center>
+   <h1> Time Sheet For <%= DateTime.now.strftime("%B %Y") %> </h1>
+  </center>
+</div>
+
+<table class="center table table-striped table-bordered">
   <tr>
     <%= form_for :time_sheet do |f| %>
-     <%= render "time_sheet", :f => f,:time_sheet => TimeSheet.first %>
+     <%= render "time_sheet", :f => f,:time_sheet => @time_sheet %>
     <% end %>
   </tr>
 </table>
+<% else %>
+ <%= link_to 'Start Time Log', new_time_sheet_path %> For <%= DateTime.now.strftime("%B %Y") %>
+<% end %>

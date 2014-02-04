@@ -1,3 +1,3 @@
 class TimeSheet < ActiveRecord::Base
-  # attr_accessible :title, :body
+  serialize :logged_hours
 end
