@@ -9,8 +9,12 @@
 
 <table class="center table table-striped table-bordered">
   <tr>
-    <%= form_for :time_sheet do |f| %>
+    <%= form_for @time_sheet do |f| %>
      <%= render "time_sheet", :f => f,:time_sheet => @time_sheet %>
+     <div class="actions">
+      <input type="submit" value="Save timesheet" class="btn btn-primary">
+      <a href="/time_sheets" class="btn btn-default">Cancel</a>
+     </div>
     <% end %>
   </tr>
 </table>

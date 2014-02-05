@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140206171723) do
+ActiveRecord::Schema.define(:version => 20140206171724) do
 
   create_table "employes", :force => true do |t|
     t.string   "number"
@@ -126,8 +126,11 @@ ActiveRecord::Schema.define(:version => 20140206171723) do
     t.date     "start_date"
     t.date     "end_date"
     t.text     "remarks"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "total_working_days"
+    t.integer  "total_logged_days"
+    t.integer  "total_holidays"
   end
 
   create_table "users", :force => true do |t|
