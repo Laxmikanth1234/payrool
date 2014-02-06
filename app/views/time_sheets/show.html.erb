@@ -1,5 +1,66 @@
-<p id="notice"><%= notice %></p>
+<div class="bootstrap">
+<div>
+  <center>
+   <h3> Time Sheet Summery For <%= DateTime.now.strftime("%B %Y") %> </h3>
+  </center>
+</div>
+<div class="row">
 
-
-<%= link_to 'Edit', edit_time_sheet_path(@time_sheet) %> |
-<%= link_to 'Back', time_sheets_path %>
+  <div class="span3"><b> Total Days :</b> <%= @time_sheet.logged_hours.count %></div>
+  <div class="span3"><% sum = 0 %>
+  <% @time_sheet.logged_hours.each { |a| sum+=a.to_i }  %>
+  <b>Total Days Logged :</b> <%= sum/8 %></div>
+  <div class="span3"> <b>Time sheet Approver:</b> <%= @time_sheet.user.manager.name %></div>
+  
+</div>
+<br/>
+<table class="table table-striped table-bordered" >
+  <tr>
+    <td style="max-width:20px;" align="center">
+      Mon
+    </td>
+    <td style="max-width:20px;" align="center">
+      Tue
+    </td>
+    <td style="max-width:20px;" align="center">
+      Wed
+    </td>
+    <td style="max-width:20px;" align="center">
+      Thus
+    </td>
+    <td style="max-width:20px;" align="center">
+      Fri
+    </td>
+    <td style="max-width:20px;" align="center">
+      Sat
+    </td>
+    <td style="max-width:20px;" align="center">
+      Sun
+    </td>
+  </tr>
+<% i = 0 %>  
+<% calender_view(@time_sheet).each do |p| %>
+  <tr>
+    <% p.each do |y| %>
+      <td style="max-width:20px;" align="center">
+        <% if y.present? %>
+         <%= y.strftime("%d") %>
+      </br>
+         <label class="btn btn-info"> <%= @time_sheet.logged_hours[i] %> </label>
+          <% i = i+1 %>
+        <% end %>
+      </td>
+     <% end %>
+  </tr>
+<% end %>
+</table>
+<div class="actions">
+  <%= form_for @time_sheet do |f| %>
+    <%= f.hidden_field :status, :value => 'Submisson' %>
+    <input type="submit" class="btn btn-success" value="Submit for Approval">
+     <a class="btn btn-info" href="<%= time_sheets_path%>"> Edit Time Sheet</a>
+  <a class="btn btn-danger" href="<%= root_path %>"> Cancel</a>
+  <% end %>
+ 
+</div>
+</div>

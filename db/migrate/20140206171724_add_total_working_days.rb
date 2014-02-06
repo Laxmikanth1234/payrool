@@ -7,4 +7,5 @@ class AddTotalWorkingDays < ActiveRecord::Migration
 
   def down
   end
+  
 end

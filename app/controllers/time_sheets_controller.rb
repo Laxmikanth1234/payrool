@@ -16,13 +16,19 @@ class TimeSheetsController < ApplicationController
   # GET /time_sheets/1.json
   def show
     @time_sheet = TimeSheet.find(params[:id])
+    @holidays = Holiday.where(:month => Date.today.strftime("%m"),:year =>Date.today.strftime("%Y"))
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @time_sheet }
     end
   end
-
+  
+  def get_submit
+    @time_sheet = TimeSheet.find(params[:id])
+    @holidays = Holiday.where(:month => Date.today.strftime("%m"),:year =>Date.today.strftime("%Y"))
+  end
+  
   # GET /time_sheets/new
   # GET /time_sheets/new.json
   def new
@@ -71,12 +77,13 @@ class TimeSheetsController < ApplicationController
   # PUT /time_sheets/1.json
   def update
     
-    puts "====================================#{params}"
     @time_sheet = TimeSheet.find(params[:id])
 
     respond_to do |format|
       if @time_sheet.update_attributes(params[:time_sheet])
-        @time_sheet.logged_hours = params[:logged_hours]
+        if params[:logged_hours].present?
+          @time_sheet.logged_hours = params[:logged_hours]
+        end
         @time_sheet.save!
         format.html { redirect_to @time_sheet, notice: 'Time sheet was successfully updated.' }
         format.json { head :no_content }

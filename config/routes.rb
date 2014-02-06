@@ -1,5 +1,10 @@
 Payrolles::Application.routes.draw do
-  resources :time_sheets
+  resources :time_sheets do
+    member do
+      get 'get_submit'
+      post 'do_submit'
+    end
+  end
 
 
   get "password_resets/new"
