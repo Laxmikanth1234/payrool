@@ -1,4 +1,6 @@
 Payrolles::Application.routes.draw do
+  get "password_resets/new"
+
   resources :payrolls
   resources :salaries
   devise_for :users,  :controllers => { :registrations => "users/Registrations" }
@@ -18,7 +20,7 @@ Payrolles::Application.routes.draw do
     resources :salaries
     resources :payrolls
   end
-
+  resources :password_resets
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
