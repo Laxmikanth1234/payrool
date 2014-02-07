@@ -18,15 +18,16 @@ Role.create(:name => "Employee", :band => 2, :level => 2, :min_salary => 20000,
 
 User.create(:first_name => "Admin", :email => "admin@viveda.com", :password => "test1234",
 :password_confirmation => "test1234", :role_id => 1, :manager_id => 1, :date_of_joining => Date.today,
-:leave_used => 20, :salary => 80000)
+:leave_used => 20, :salary => 80000,:active => true)
 User.create(:first_name => "Manager", :email => "manager@viveda.com", :password => "test1234",
 :password_confirmation => "test1234", :role_id => 2, :manager_id => 1, :date_of_joining => Date.today,
-:leave_used => 20, :salary => 80000)
+:leave_used => 20, :salary => 80000,:active => true)
 
 User.create(:first_name => "Employee", :email => "employee@viveda.com", :password => "test1234",
 :password_confirmation => "test1234", :role_id => 3, :manager_id => 2, :date_of_joining => Date.today,
-:leave_used => 20, :salary => 80000)
-(Date.parse("2013-01-01")..Date.parse("2013-12-31")).each do |x|
+:leave_used => 20, :salary => 80000,:active => true)
+
+(Date.parse("2013-01-01")..Date.parse("2014-12-31")).each do |x|
   if x.wday == 5 or x.wday == 6
     reason = "Sunday"
     if x.wday == 5

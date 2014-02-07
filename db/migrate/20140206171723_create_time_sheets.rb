@@ -1,6 +1,5 @@
 class CreateTimeSheets < ActiveRecord::Migration
   def change
-    drop_table :time_sheets
     create_table :time_sheets do |t|
       t.integer :user_id
       t.integer :manager_id
