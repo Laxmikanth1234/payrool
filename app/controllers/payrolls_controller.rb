@@ -2,8 +2,9 @@ class PayrollsController < ApplicationController
   # GET /payrolls
   # GET /payrolls.json
   def index
-    @payrolls = Payroll.all
+    
     @employe = User.find_by_id(params[:user_id])
+    @payroll = @employe.payrolls.last
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -26,15 +27,18 @@ class PayrollsController < ApplicationController
   # GET /payrolls/1
   # GET /payrolls/1.json
   def show
-    @payroll = Payroll.find(params[:id])
-    @employe = User.find_by_id(params[:user_id])
+    @payroll = current_user.payrolls.find(params[:id])
+    @employe = current_user
     respond_to do |format|
       format.html # show.html.erb
       format.js
-      format.pdf { render :pdf => "#{@employe.name}",
-                          :layout => false,
-                          :orientation => 'landscape'
-                }
+      format.pdf { 
+        html = render_to_string(:action => :show, :layout => false) 
+        pdf = WickedPdf.new.pdf_from_string(html) 
+        send_data(pdf, 
+          :filename    => "#{@employe.number}#{@employe.name}-Payslip.pdf", 
+          :disposition => 'attachment') 
+        }
     end
   end
 

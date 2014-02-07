@@ -1,55 +1,33 @@
-<h1>Listing payrolls</h1>
-
-<table>
-  <tr>
-    <th>Employe</th>
-    <th>Basic</th>
-    <th>Hra</th>
-    <th>Travel</th>
-    <th>Daily</th>
-    <th>Medical</th>
-    <th>Other</th>
-    <th>Variable</th>
-    <th>Gross</th>
-    <th>Professional tax</th>
-    <th>Pf</th>
-    <th>Esi</th>
-    <th>Tds</th>
-    <th>Advance salary</th>
-    <th>Total deductions</th>
-    <th>Net salary</th>
-    <th>Total working days</th>
-    <th>Working days</th>
-    <th>Payroll month</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @payrolls.each do |payroll| %>
-  <tr>
-    <td><%= payroll.employe.name %></td>
-    <td><%= payroll.basic %></td>
-    <td><%= payroll.hra %></td>
-    <td><%= payroll.travel %></td>
-    <td><%= payroll.daily %></td>
-    <td><%= payroll.medical %></td>
-    <td><%= payroll.other %></td>
-    <td><%= payroll.variable %></td>
-    <td><%= payroll.gross %></td>
-    <td><%= payroll.professional_tax %></td>
-    <td><%= payroll.pf %></td>
-    <td><%= payroll.esi %></td>
-    <td><%= payroll.tds %></td>
-    <td><%= payroll.advance_salary %></td>
-    <td><%= payroll.total_deductions %></td>
-    <td><%= payroll.net_salary %></td>
-    <td><%= payroll.total_working_days %></td>
-    <td><%= payroll.working_days %></td>
-    <td><%= payroll.payroll_month_year %></td>
-    <td><%= link_to 'Download', "" %></td>
-  </tr>
+<div class="clear"></div>
+<br/>
+<div class="bootstrap">
+<div class="control-group row-fluid form-inline">
+  <div class="controls">
+    <label>Select PaySlip For Month </label>
+    <select name="payslip_month" id="payslip_month">
+      <option> Select Month&Year</option>
+    <% current_user.payrolls.each do |pr| %>
+    <option value="<%= pr.id %>"> <%= pr.payroll_month_year %></option>
+    <% end %>
+    </select>
+  </div>
+</div>
+<div id="payslip_div">
+<% if @payroll.present? %>
+  <%= render "payroll", :payroll => @payroll%>
 <% end %>
-</table>
+</div>
+</div>
+<script>
+  if @payroll.present? 
+    $("#payslip_month").val(@payroll.payroll_month_year)
+  end
+  $("#payslip_month").change(function(){ 
+      $.ajax({
+    type : 'get',
+    url : "/payrolls/"+ $(this).val()+".js" ,
+    dataType : 'script'
 
-<%= link_to 'Back', @employe %>
+  });
+    });
+</script>

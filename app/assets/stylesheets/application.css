@@ -18,6 +18,7 @@
  *= require bootstrap-modal
  *= require bootstrap-modal-bs3patch
  *= require bootstrap-responsive
+ *= require style
 */
 table td {
     border-top: none;

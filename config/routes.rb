@@ -16,6 +16,10 @@ Payrolles::Application.routes.draw do
   end
   resources :salaries
   devise_for :users,  :controllers => { :registrations => "users/Registrations" }
+  devise_for :users do
+    get 'logout' => 'devise/sessions#destroy'
+    delete 'logout' => 'devise/sessions#destroy'
+  end
   root :to => "employes#index"
   resources :holidays
   resources :leaves do
@@ -33,6 +37,7 @@ Payrolles::Application.routes.draw do
     resources :payrolls
   end
   resources :password_resets
+  
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"

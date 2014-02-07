@@ -1,63 +1,58 @@
 <!DOCTYPE html>
-<!-- saved from url=(0039)http://getbootstrap.com/examples/theme/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.ico">
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <title>Theme Template for Bootstrap</title>
+    <title>Viveda Employee Payroll</title>
 
-    <!-- Bootstrap core CSS -->
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap theme -->
     <link href="http://getbootstrap.com/dist/css/bootstrap-theme.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
     <link href="http://getbootstrap.com/examples/theme/theme.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
   <style id="holderjs-style" type="text/css"></style></head>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <body role="document" style="">
-
-    <!-- Fixed navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
+      <div class="container" style="height:65px;">
         <div class="navbar-header">
-          <a class="navbar-brand" href="http://getbootstrap.com/examples/theme/#"> <%= image_tag "Logo-website2.png" %></a>
+          <a class="navbar-brand" href="http://getbootstrap.com/examples/theme/#"> <%= image_tag "Logo-website2.png", :style => "height:65px;background-color:white;margin-top:-15px;" %></a>
         </div>
         <div class="navbar-collapse collapse">
+        <% if current_user %>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="http://getbootstrap.com/examples/theme/#">Home</a></li>
-            <li><a href="http://getbootstrap.com/examples/theme/#about">About</a></li>
-            <li><a href="http://getbootstrap.com/examples/theme/#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <% if current_user.is_admin? %>
+            <li class="<%= menu_status(params,'employes') %>"><a href="<%= employes_path %>">Home</a></li>
+            <% end %>
+            <% if !current_user.is_employee? %>
+            <li class="<%= menu_status(params,'employes','index') %>"><a href="<%= employes_path %>">Manage Employees</a></li>
+            <%end%>
+            <li class="<%= menu_status(params,'leaves') %>"><a href="<%= leaves_path %>">Leaves</a></li>
+            <% if current_user.is_employee? %>
+            <li class="<%= menu_status(params,'time_sheets') %>"><a href="<%= time_sheets_path %>">Time Sheet</a></li>
+            <li class="<%= menu_status(params,'payrolls') %>"><a href="<%= user_payrolls_path(current_user) %>">Pay Slips</a></li>
+            <% end %>
+            <% if current_user.is_admin? %>
+            <li class="dropdown <%= menu_status(params,'time_sheets') || menu_status(params,'holidays')%>">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Settings<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="http://getbootstrap.com/examples/theme/#">Action</a></li>
-                <li><a href="http://getbootstrap.com/examples/theme/#">Another action</a></li>
-                <li><a href="http://getbootstrap.com/examples/theme/#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="http://getbootstrap.com/examples/theme/#">Separated link</a></li>
-                <li><a href="http://getbootstrap.com/examples/theme/#">One more separated link</a></li>
+                <li class="<%= menu_status(params,'holidays') %>"><a href="<%= holidays_path %>">Holidays Calender</a></li>
+                <li class="<%= menu_status(params,'time_sheets') %>"><a href="<%= time_sheets_path %>">Time Sheets Management</a></li>
+                <li><a href="http://getbootstrap.com/examples/theme/#">Payroll Generation</a></li>
               </ul>
             </li>
+            <% end %>
+          </ul>
+          <% end %>
+           <% if current_user %>
+         <div class="navbar-header pull-right">
+          <ul class="nav navbar-nav">
+             <li><a href="<%= edit_employe_path(current_user) %>">Logged in as <%= current_user.first_name %></a></li>
+            <li><%= link_to "Sign out", logout_path, method: "delete" %></li>
           </ul>
         </div>
+        <% end %>
+        </div>
+        
       </div>
     </div>
     <div class="container theme-showcase" role="main">

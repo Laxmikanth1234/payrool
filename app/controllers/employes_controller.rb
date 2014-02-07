@@ -5,7 +5,6 @@ class EmployesController < ApplicationController
   # GET /employes
   # GET /employes.json
   def index
-    
     @employes = User
     if current_user.is_admin?
       @employes = @employes.where("id != ? ",current_user.id).all
@@ -25,8 +24,11 @@ class EmployesController < ApplicationController
   # GET /employes/1
   # GET /employes/1.json
   def show
-    @employe = Employe.find(params[:id])
-
+    @employe = User.find(params[:id])
+    @role = Role.all
+    manager_role = Role.where(:name => "Manager").first
+    @manager = User.where(:role_id => manager_role.id)
+    @manager << User.first if @manager.blank?
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @employe }
