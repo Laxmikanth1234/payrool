@@ -1,17 +1,23 @@
 class TimeSheetsController < ApplicationController
   # GET /time_sheets
   # GET /time_sheets.json
+  
   def index
+    
     @time_sheet = TimeSheet.last
     if @time_sheet.present?
       @holidays = Holiday.where(:month => @time_sheet.start_date.strftime("%m"),:year => @time_sheet.start_date.strftime("%Y"));
     end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @time_sheets }
     end
   end
 
+  def manage_time_sheets
+    @time_sheets = current_user.manger_time_sheets
+  end
   # GET /time_sheets/1
   # GET /time_sheets/1.json
   def show
@@ -20,7 +26,7 @@ class TimeSheetsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @time_sheet }
+      format.js {}
     end
   end
   
@@ -105,4 +111,16 @@ class TimeSheetsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def change_status
+    @time_sheet = TimeSheet.find(params[:id])
+    @time_sheet.status = params[:status]
+    @time_sheet.save!
+     respond_to do |format|
+      format.html {  redirect_to action: "manage_time_sheets"}
+      format.js { }
+      format.json { head :no_content }
+    end
+  end
+  
 end

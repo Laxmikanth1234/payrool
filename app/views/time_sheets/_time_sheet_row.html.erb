@@ -1,0 +1,44 @@
+    <% employe = t.user %>
+    <td><%= employe.number%></td>
+    <td><%= employe.name%></td>
+    <td><%= employe.email%></td>
+    <td><%= t.logged_hours.count %></td>
+    <td><%= t.total_logged_days%></td>
+    <td><%= t.status %></td>
+    <td>
+      <%= link_to "View",t, :class => 'btn btn-info' %>
+      <% if t.status == "Submisson"%>
+        <%= button_tag "Approve", :class => 'btn btn-success btn_approve',:id => t.id %>  
+        <%= button_tag "Reject", :class => 'btn btn-danger btn_reject',:id => t.id %> 
+      <% end %>
+    </td>
+<script>
+$(".btn_approve").click(function(){ 
+  $.ajax({
+    type : 'post',
+    url : "/time_sheets/change_status.js",
+    data: {status : 'Approve',id : $(this).attr("id")},
+    dataType : 'script',
+     error: function (err) {
+            alert("error in processing ");
+        },
+        success: function () {
+            alert("Approved Successfully");
+        }
+  });
+    });
+    $(".btn_reject").click(function(){ 
+   $.ajax({
+    type : 'post',
+    url : "/time_sheets/change_status.js",
+    data: {status : 'Reject',id : $(this).attr("id")},
+    dataType : 'script',
+     error: function (err) {
+            alert("error in processing ");
+        },
+        success: function () {
+             alert("Rejected Successfully");
+        }
+  });
+    });
+</script>

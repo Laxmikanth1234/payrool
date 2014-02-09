@@ -3,6 +3,11 @@ Payrolles::Application.routes.draw do
     member do
       get 'get_submit'
       post 'do_submit'
+      
+    end
+    collection do
+      get 'manage_time_sheets'
+      post 'change_status'
     end
   end
 

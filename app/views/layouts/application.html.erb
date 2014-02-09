@@ -11,6 +11,8 @@
     <link href="http://getbootstrap.com/examples/theme/theme.css" rel="stylesheet">
   <style id="holderjs-style" type="text/css"></style></head>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag    "application" %>
+  <%= csrf_meta_tag %>
   <body role="document" style="">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container" style="height:65px;">
@@ -36,7 +38,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Settings<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li class="<%= menu_status(params,'holidays') %>"><a href="<%= holidays_path %>">Holidays Calender</a></li>
-                <li class="<%= menu_status(params,'time_sheets') %>"><a href="<%= time_sheets_path %>">Time Sheets Management</a></li>
+                <li class="<%= menu_status(params,'time_sheets') %>"><a href="<%= manage_time_sheets_time_sheets_path %>">Time Sheets Management</a></li>
                 <li><a href="http://getbootstrap.com/examples/theme/#">Payroll Generation</a></li>
               </ul>
             </li>

@@ -46,7 +46,8 @@
         <% if y.present? %>
          <%= y.strftime("%d") %>
       </br>
-         <label class="btn btn-info"> <%= @time_sheet.logged_hours[i] %> </label>
+         <% logedhours = @time_sheet.logged_hours[i]%>
+         <label class="btn <%= logedhours.to_i != 0 ? 'btn-info' : 'btn-warning' %>"> <%= @time_sheet.logged_hours[i] %> </label>
           <% i = i+1 %>
         <% end %>
       </td>
@@ -55,12 +56,55 @@
 <% end %>
 </table>
 <div class="actions">
+<% if current_user.is_employee? %>
   <%= form_for @time_sheet do |f| %>
     <%= f.hidden_field :status, :value => 'Submisson' %>
-    <input type="submit" class="btn btn-success" value="Submit for Approval">
-     <a class="btn btn-info" href="<%= time_sheets_path%>"> Edit Time Sheet</a>
+    
+  <input type="submit" class="btn btn-success" value="Submit for Approval">
+  <a class="btn btn-info" href="<%= time_sheets_path%>"> Edit Time Sheet</a>
+  <a class="btn btn-danger" href="<%= time_sheets_path %>"> Back</a>
   <a class="btn btn-danger" href="<%= root_path %>"> Cancel</a>
   <% end %>
- 
+ <% end %>
+
+<% if current_user.is_admin? %>
+<a class="btn btn-info" href="<%= manage_time_sheets_time_sheets_path %>"> Back</a>
+ <% if @time_sheet.status == "Submisson"%>
+  <%= button_tag "Approve", :class => 'btn btn-success btn_approve',:id => @time_sheet.id %>  
+  <%= button_tag "Reject", :class => 'btn btn-danger btn_reject',:id => @time_sheet.id %> 
+ <% end %>
+<% end %>
+
+
 </div>
 </div>
+<script>
+$(".btn_approve").click(function(){ 
+  $.ajax({
+    type : 'post',
+    url : "/time_sheets/change_status",
+    data: {status : 'Approve',id : $(this).attr("id"), from : 'show_page'},
+    dataType : 'json',
+    error: function (err) {
+            alert("error in processing ");
+        },
+        success: function () {
+            window.location.href = "/time_sheets/manage_time_sheets"
+        }
+  });
+    });
+    $(".btn_reject").click(function(){ 
+   $.ajax({
+    type : 'post',
+    url : "/time_sheets/change_status",
+    data: {status : 'Reject',id : $(this).attr("id"),from : 'show_page'},
+    dataType : 'json',
+    error: function (err) {
+            alert("error in processing ");
+        },
+        success: function () {
+            window.location.href = "/time_sheets/manage_time_sheets"
+        }
+  });
+    });
+</script>

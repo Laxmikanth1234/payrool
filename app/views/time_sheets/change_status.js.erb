@@ -1,0 +1,4 @@
+$('#ts_row_<%= @time_sheet.id %>').html("");
+$('#ts_row_<%= @time_sheet.id %>').removeAttr("class")
+$('#ts_row_<%= @time_sheet.id %>').attr("class","<%= @time_sheet.status%>")
+$('#ts_row_<%= @time_sheet.id %>').append("<%= escape_javascript render(:partial => 'time_sheet_row', :locals => { :t => @time_sheet }) %>");

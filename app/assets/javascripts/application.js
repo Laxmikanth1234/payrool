@@ -12,13 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-//= require bootstrap
-//= require bootstrap.datepicker
+//= require bootstrap-datepicker
 //= require bootstrap.select
 //= require bootstrap.tagmanager
 //= require bootstrap.timepicker
-//= require bootstrap.daterangepicker
 //= require bootstrap-modal
 //= require bootstrap-modalmanager
 
@@ -45,7 +42,7 @@
     }
 
 jQuery(document).ready(function(){
-            $('#txtDateFrom,#txtDateTo').datepicker({
+  $('#txtDateFrom,#txtDateTo').datepicker({
                 changeYear: true,
                 beforeShow: function (textbox, instance) {
                 instance.dpDiv.css({

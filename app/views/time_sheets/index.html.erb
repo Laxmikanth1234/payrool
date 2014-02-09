@@ -12,9 +12,11 @@
     <%= form_for @time_sheet do |f| %>
      <%= render "time_sheet", :f => f,:time_sheet => @time_sheet %>
      <div class="actions">
+    <% if @time_sheet.status == 'New' || @time_sheet.status == 'Reject' %>
       <input type="submit" value="Save timesheet" class="btn btn-primary">
       <%= link_to "Submit",@time_sheet,:class => 'btn btn-success' %>
       <a href="/time_sheets" class="btn btn-default">Cancel</a>
+      <% end %>
      </div>
     <% end %>
   </tr>

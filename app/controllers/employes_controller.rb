@@ -14,10 +14,13 @@ class EmployesController < ApplicationController
     end
      if current_user.is_employee?
       @employes = @employes.where(:id => current_user.id)
+      redirect_to "/employes/#{current_user.id}"
     end
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @employes }
+    if !current_user.is_employee?
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @employes }
+      end
     end
   end
 
@@ -75,6 +78,10 @@ class EmployesController < ApplicationController
   # PUT /employes/1.json
   def update
     @employe = User.find(params[:id])
+     @role = Role.all
+    manager_role = Role.where(:name => "Manager").first
+    @manager = User.where(:role_id => manager_role.id)
+    @manager << User.first if @manager.blank?
     respond_to do |format|
       if @employe.update_attributes(params[:user])
         format.html { redirect_to edit_employe_path(@employe), notice: 'Employe was successfully updated.' }

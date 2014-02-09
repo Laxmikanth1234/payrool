@@ -2,6 +2,8 @@
   <b> Total Days :</b> <%= f.text_field "total_working_days",:value => time_sheet.logged_hours.count,:size => 4, :readonly => true %>
   &nbsp;&nbsp;&nbsp;
   <b>Total Days Logged :</b> <%= f.text_field "total_logged_days",:size => 4, :readonly => true %>
+  &nbsp;&nbsp;&nbsp;
+  <b>Status:</b> <%= time_sheet.status %>
 </div>
 
 <table class="table table-striped table-bordered" >
@@ -35,10 +37,11 @@
       <td style="max-width:20px;" align="center">
         <% if y.present? %>
          <%= y.strftime("%d") %>
-          <%  if y <= Date.today && !(@holidays.collect{|x| x.day}.include? y.strftime("%d").to_i) %>
+          <% h_flag = @holidays.collect{|x| x.day}.include? y.strftime("%d").to_i %>
+          <%  if y <= Date.today && !h_flag %>
            <%= text_field_tag 'logged_hours[]', time_sheet.logged_hours[i],:size => 2,:class => 'work_hours' %>
           <% else %>
-           <%= text_field_tag 'logged_hours[]', time_sheet.logged_hours[i],:size => 2,:readonly => "readonly",:class => 'work_hours', :style=> "background-color:rgb(209, 201, 201)" %>
+           <%= text_field_tag 'logged_hours[]', time_sheet.logged_hours[i],:size => 2,:readonly => "readonly",:class => 'work_hours', :style=> h_flag && y <= Date.today ? "background-color:#00FFFF" : "background-color:rgb(209, 201, 201)"  %>
           <% end %>
           <% i = i+1 %>
         <% end %>
@@ -48,6 +51,9 @@
 <% end %>
 </table>
 <script>
+<% if time_sheet.status == "Submission" || time_sheet.status == "Approve" %>
+ $(".work_hours").attr("readonly",true);
+<% end %>
 $( document ).ready(function() {
   value = parseFloat(0);
         $.each($('.work_hours'), function() {

@@ -1,0 +1,27 @@
+<div class="bootstrap">
+  <h1>Manage Time Sheets</h1>
+  <br/>
+  <select id="ts_filter">
+    <option>All</option>
+    <option>Approve</option>
+    <option>Reject</option>
+    <option>Submission</option>
+  </select>
+  <div id="timesheet_div">
+    <%= render "time_sheets_table", :time_sheets => @time_sheets %>
+  </div>
+</div>
+<div class="bootstrap">
+<div id="ts_popup" class="bootstrap">
+  
+</div>
+</div>
+<script>
+ $("#ts_filter").change(function(){
+  $(".tr_row").hide();
+  $("."+$(this).val()).show();
+  if($(this).val() == 'All'){
+    $(".tr_row").show();
+  }
+ });
+</script>

@@ -34,7 +34,7 @@
     <% end %>
     <% if !current_user.is_admin? %>
      <script>
-      $("#emp_form").find("input,textarea").attr("disabled", "disabled");
+      $("#emp_form").find("input,textarea,select").attr("disabled", "disabled");
       $("#payslip_month").removeAttr('disabled')
      </script>
     <% end %>

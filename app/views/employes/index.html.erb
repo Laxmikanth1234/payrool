@@ -30,7 +30,7 @@
     <td><%= employe.number %></td>
     <td><%= employe.first_name %> <%= employe.middle_name %> <%= employe.last_name %></td>
     <td><%= employe.email %></td>
-    <td><%= employe.date_of_joining.strftime("%d/%m/%Y") %></td>
+    <td><%= employe.date_of_joining ? employe.date_of_joining.strftime("%d/%m/%Y") : '' %></td>
     <td><%= employe.mobile_number %></td>
     <td><%= employe.active ? "Yes" : "No" %>/ <%= employe.employement_status %></td>
     <td><%= employe.reporting_manager %>  </td>

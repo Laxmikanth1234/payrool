@@ -91,7 +91,7 @@
 <div class="control-group row-fluid form-inline">
   <%= f.label :date_of_birth, :class => 'control-label bold' %>
   <div class="controls">
-    <%= f.text_field :date_of_birth, :class => 'text_field datepicker' %>
+  <%= f.text_field :date_of_birth,:value => @employe.date_of_birth.present? ? @employe.date_of_birth.strftime("%d/%m/%Y") : '', :class => 'text_field datepicker' %>
      <% if @employe.errors[:date_of_birth].present? %>
       <span class="alert alert-error bold">
         <%= @employe.errors[:date_of_birth].first %>
