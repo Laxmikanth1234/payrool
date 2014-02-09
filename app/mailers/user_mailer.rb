@@ -7,9 +7,8 @@ class UserMailer < ActionMailer::Base
   #
   def himail(user)
    data = File.read(Rails.root.join('public/assets/home2.png'))
-   puts Rails.root.join('public/assets/home2.png')
-    attachments.inline['header.png'] = data
-    mail(:to => "#{user.name} <chandrasekharjangam@gmail.com>", :subject => "Registered",:content_type => 'text/html')
+   # attachments.inner['logo'] = data
+    mail(:to => "#{user.name} <chandrasekharjangam@gmail.com>", :subject => "Registered")
   end
 
   def password_reset
