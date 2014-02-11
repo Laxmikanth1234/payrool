@@ -40,8 +40,11 @@
 </div>
 </div>
 <script>
-
   $(function() {
-    $( ".datepicker" ).datepicker();
+    $( ".datepicker" ).datepicker(
+      { autoclose: true,
+        format: "dd/mm/yyyy"
+      }
+    );
   });
   </script>

@@ -24,23 +24,74 @@
           </td>
         </tr>
         <tr>
-          <td class="divider" colspan="2" bgcolor="#555555" height="2"></td>
-        </tr>
-        <tr class="episode">
-          <td>
-            <a href="#"><img src="http://railscasts.com/assets/episodes/stills/310-getting-started-with-rails.png" width="200" height="125" alt="#310 Getting Started with Rails"></a>
+          <td class="divider" colspan="2" bgcolor="#" height="2">
+           
+            
           </td>
-          <td valign="top">
-            <h2>#310 Getting Started with Rails</h2>
-            <p>Learning Ruby on Rails can be overwhelming, especially if you are new to programming. Here I will take you on a tour through various resources to help get started with Rails.</p>
-            <p>
-              <a href="#">Watch Episode</a>
-              <span class="duration">(7 minutes)</span>
-            </p>
+        </tr>
+        <tr>
+          <td>
+             Dear <%= @user.name %>,
+            You got leave request from <%= @leave.user.name %>.
+            Leave Details as follows.
           </td>
         </tr>
         <tr>
           <td class="divider" colspan="2" bgcolor="#555555" height="2"></td>
+        </tr>
+        <tr>
+          <td>
+            <table class="table" style="width:50%">
+    <tr>
+      <td>
+        Total No of Days:
+      </td>
+      <td>
+        <%=@leave.total_days%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        No of working Days:
+      </td>
+      <td>
+        <%=@leave.total_days.to_i - @leave.holiday_days.to_i%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Name:
+      </td>
+      <td>
+        <%=@leave.user.first_name%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Start Date:
+      </td>
+      <td>
+        <%=@leave.start_date%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        End Date:
+      </td>
+      <td>
+        <%=@leave.end_date%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Reason For Leave:
+      </td>
+      <td>
+        <%=@leave.reason_for_leave%>
+      </td>
+    </tr>
+  </table>
+          </td>
         </tr>
         <tr>
           <td id="footer" colspan="2" align="center">

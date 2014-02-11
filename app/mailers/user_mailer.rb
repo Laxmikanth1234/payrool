@@ -6,8 +6,8 @@ class UserMailer < ActionMailer::Base
   #   en.user_mailer.password_reset.subject
   #
   def himail(user)
-   data = File.read(Rails.root.join('public/assets/home2.png'))
-   # attachments.inner['logo'] = data
+   data = File.read(Rails.root.join('public/assets/Logo-website2.png'))
+    attachments['logo.png'] = data
     mail(:to => "#{user.name} <chandrasekharjangam@gmail.com>", :subject => "Registered")
   end
 
@@ -15,4 +15,15 @@ class UserMailer < ActionMailer::Base
     @greeting = "Hi"
     mail to: "chandrasekharjangam@gmail.com"
   end
+  
+  
+  def leave_email(user,leave)
+    @user = user
+    @leave = leave
+    data = File.read(Rails.root.join('public/assets/Logo-website2.png'))
+    attachments['logo.png'] = data
+    mail(:to => "#{user.name} <chandrasekharjangam@gmail.com>", :subject => "Leave Application")
+  end
+  
+  
 end
