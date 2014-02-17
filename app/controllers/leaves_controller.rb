@@ -29,7 +29,7 @@ class LeavesController < ApplicationController
     @leave.total_days = @total_days.size
     if @leave.valid?
       @leave.save!
-      # LmsMailer.applied_for_leave(@leave, current_user, @working_day, @holiday_day).deliver
+       UserMailer.leave_email(@leave,request).deliver
       redirect_to leaves_path
     else
       render 'new'
@@ -69,7 +69,7 @@ class LeavesController < ApplicationController
   end
 
   def leave_to_approve
-    @leaves = Leave.where(:manager_id => current_user.id, :status => "pending")
+    @leaves = Leave.where(:manager_id => current_user.id)
   end
 
   def approve_leave

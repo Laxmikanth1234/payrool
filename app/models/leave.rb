@@ -3,6 +3,7 @@ class Leave < ActiveRecord::Base
   include LeaveCalender
   
   belongs_to :user
+   belongs_to :manager, :class_name => "User", :foreign_key => "manager_id"
   validates   :start_date, :end_date, :reason_for_leave, :user_id, :manager_id, :presence => true
 
   def leave_array(start_date, end_date)

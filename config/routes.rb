@@ -30,6 +30,7 @@ Payrolles::Application.routes.draw do
   resources :leaves do
     member do
       put 'approve_leave'
+      get 'approve_leave'
     end
     collection do
       get 'leave_history'

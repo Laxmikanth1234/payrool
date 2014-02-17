@@ -17,12 +17,12 @@ class UserMailer < ActionMailer::Base
   end
   
   
-  def leave_email(user,leave)
-    @user = user
+  def leave_email(leave,request)
     @leave = leave
+    @request = request
     data = File.read(Rails.root.join('public/assets/Logo-website2.png'))
-    attachments['logo.png'] = data
-    mail(:to => "#{user.name} <chandrasekharjangam@gmail.com>", :subject => "Leave Application")
+    attachments.inline['logo.png'] = data
+    mail(:to => "#{leave.user.name} <chandrasekharjangam@gmail.com>", :subject => "Leave Application")
   end
   
   
