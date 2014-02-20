@@ -7,7 +7,7 @@ class LeavesController < ApplicationController
   end
   
   def index
-    @leaves = Leave.where("user_id =? AND end_date >= ? ", current_user.id, Date.today )
+    @leaves = Leave.where("user_id =? ", current_user.id )
   end
 
   def new
@@ -53,7 +53,7 @@ class LeavesController < ApplicationController
     @leave.attributes = params[:leave]
     @leave.user_id = current_user.id
     @leave.manager_id = current_user.manager
-    @leave.status = "pending"
+    @leave.status = "Pending"
     if @leave.valid?
       @leave.save
       redirect_to leaves_path

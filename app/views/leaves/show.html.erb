@@ -1,3 +1,5 @@
+<br/>
+<br/>
 <div class="bootstrap">
 <div class="panel panel-default" style="width:50%">
   <!-- Default panel contents -->
@@ -57,7 +59,9 @@
  </div>
  <div class="actions">
     <%= link_to 'Back', leaves_path, :class=> 'btn btn-primary' %>
-    <%= link_to 'Approve', approve_leave_leafe_path(@leave), :method => 'put',:class=> 'btn btn-success' %>
-    <%= link_to 'Reject', approve_leave_leafe_path(@leave, :rejected => "Rejected"), :method => 'put',:class=> 'btn btn-danger' %>
+    <% if @leave.status == 'Pending' && !current_user.is_employee?%>
+      <%= link_to 'Approve', approve_leave_leafe_path(@leave), :method => 'put',:class=> 'btn btn-success',confirm: "Are you sure to Approve Leave Request?" %>
+      <%= link_to 'Reject', approve_leave_leafe_path(@leave, :rejected => "Rejected"), :method => 'put',:class=> 'btn btn-danger' ,confirm: "Are you sure to Reject Leave Request ?"%>
+    <% end %>
   </div>
 </div>

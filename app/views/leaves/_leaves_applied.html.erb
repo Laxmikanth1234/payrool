@@ -11,13 +11,14 @@
   <% @leaves.each do |leave| %>
    <tbody>
     <td style="width:80px;">
-       <%=  count = count + 1 %>
+       <% count = count + 1 %>
+      <%= link_to count,leave%>
     </td>
     <td style="width:100px;">
-      <%=  leave.start_date.strftime("%d/%m/%Y") %>
+      <%= link_to leave.start_date.strftime("%d/%m/%Y"),leave %>
     </td>
     <td style="width:100px;">
-      <%=  leave.end_date.strftime("%d/%m/%Y") %>
+      <%= link_to leave.end_date.strftime("%d/%m/%Y"),leave %>
     </td>
     <td>
       <%=  leave.reason_for_leave %>
@@ -26,7 +27,7 @@
     <% if leave.status == 'Approved' %>
       <div class="label label-success">
     <% end %>
-    <% if leave.status == 'pending' %>
+    <% if leave.status == 'Pending' %>
       <div class="label label-warning">
     <% end %>
     <% if leave.status == 'Rejected' %>
@@ -37,7 +38,7 @@
     </td>
     <td style="width:100px;">
       <div style="float:left;">
-       <% if leave.status == 'pending' %>  
+       <% if leave.status == 'Pending' %>  
         <%= link_to image_tag("edit.png",:style => "height:20px;float:left"), edit_leafe_path(leave),:rel => "tooltip", :title => "Edit Leave" %> 
         <%= link_to  image_tag("delete.jpg",:style => "height:20px;float:right"), leafe_path(leave), confirm: 'Are you sure?', method: :delete,:rel => "tooltip", :title => "Remove Leave" %>
        <% end %>
