@@ -27,8 +27,9 @@ class PayrollsController < ApplicationController
   # GET /payrolls/1
   # GET /payrolls/1.json
   def show
-    @payroll = current_user.payrolls.find(params[:id])
-    @employe = current_user
+    user = User.find(params[:user_id])
+    @payroll = user.payrolls.find(params[:id])
+    @employe = user
     respond_to do |format|
       format.html # show.html.erb
       format.js
@@ -63,6 +64,7 @@ class PayrollsController < ApplicationController
   def create
     @employe = User.find_by_id(params[:user_id])
     @payroll = @employe.payrolls.new(params[:payroll])
+    @payroll.user = @employe
     @payroll.calculate_salary(@employe.salary)
     respond_to do |format|
       if @payroll.save

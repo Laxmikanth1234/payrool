@@ -34,7 +34,7 @@
         Start Date:
       </td>
       <td>
-        <%=@leave.start_date%>
+        <%=@leave.start_date.strftime("%d/%m/%Y")%>
       </td>
     </tr>
     <tr>
@@ -42,7 +42,7 @@
         End Date:
       </td>
       <td>
-        <%=@leave.end_date%>
+        <%=@leave.end_date.strftime("%d/%m/%Y")%>
       </td>
     </tr>
     <tr>

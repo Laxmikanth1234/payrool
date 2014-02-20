@@ -1,3 +1,9 @@
+<select id="leaves_filter">
+   <option> All </option>
+   <option selected> Pending </option>
+   <option> Approved </option>
+   <option> Rejected </option>
+</select>
 <table class="table table-striped table-bordered" style="width:80%">
   <thead>
     <th> Slno. </th>
@@ -10,14 +16,15 @@
   <%  count = 0 %>
   <% @leaves.each do |leave| %>
    <tbody>
+   <tr id="leave_row_<%= leave.id %>" class="leave_row <%= leave.status %>">
     <td style="width:80px;">
        <%=  count = count + 1 %>
     </td>
     <td style="width:100px;">
-      <%=  leave.start_date %>
+      <%=  leave.start_date.strftime("%d/%m/%Y") %>
     </td>
     <td style="width:100px;">
-      <%=  leave.end_date %>
+      <%=  leave.end_date.strftime("%d/%m/%Y") %>
     </td>
     <td>
       <%=  leave.reason_for_leave %>
@@ -26,7 +33,7 @@
     <% if leave.status == 'Approved' %>
       <div class="label label-success">
     <% end %>
-    <% if leave.status == 'pending' %>
+    <% if leave.status == 'Pending' %>
       <div class="label label-warning">
     <% end %>
     <% if leave.status == 'Rejected' %>
@@ -38,10 +45,24 @@
     <td style="width:250px;">
       <div style="float:left;">
        <%= link_to 'Show', leafe_path(leave),:class => 'btn btn-primary' %>
-       <%= link_to 'Approve', approve_leave_leafe_path(leave), :method => 'put',:class => 'btn btn-success' %> 
-       <%= link_to 'Reject', approve_leave_leafe_path(leave, :rejected => "Rejected"), :method => 'put',:class => 'btn btn-danger' %>
+       <% if leave.status == 'Pending' %>
+        <%= link_to 'Approve', approve_leave_leafe_path(leave), :method => 'put',:class => 'btn btn-success' %> 
+        <%= link_to 'Reject', approve_leave_leafe_path(leave, :rejected => "Rejected"), :method => 'put',:class => 'btn btn-danger' %>
+       <% end %>
      </div>
     </td>
+   </tr>
   </tbody>
   <% end %>
 </table>
+<script>
+$(".leave_row").hide(); 
+$(".Pending").show();
+ $("#leaves_filter").change(function(){
+  $(".leave_row").hide();
+  $("."+$(this).val()).show();
+  if($(this).val() == 'All'){
+    $(".leave_row").show();
+  }
+ });
+</script>

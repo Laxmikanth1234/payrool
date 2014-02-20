@@ -14,10 +14,10 @@
        <%=  count = count + 1 %>
     </td>
     <td style="width:100px;">
-      <%=  leave.start_date %>
+      <%=  leave.start_date.strftime("%d/%m/%Y") %>
     </td>
     <td style="width:100px;">
-      <%=  leave.end_date %>
+      <%=  leave.end_date.strftime("%d/%m/%Y") %>
     </td>
     <td>
       <%=  leave.reason_for_leave %>

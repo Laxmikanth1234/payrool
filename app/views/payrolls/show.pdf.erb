@@ -27,7 +27,7 @@
           <td>Designation </td>
           <td><%= @payroll.user.designation %></td>
           <td>DOJ </td>
-          <td><%= @payroll.user.date_of_joining.strftime("%d/%m/%Y") %></td>
+          <td><%= @payroll.user.date_of_joining ? @payroll.user.date_of_joining.strftime("%d/%m/%Y") : '' %></td>
         </tr>
         <tr>
           <td>Total Working Days </td>

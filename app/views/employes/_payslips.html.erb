@@ -2,7 +2,7 @@
   PaySlip Month
   <div class="controls">
     <select name="payslip_month" id="payslip_month">
-    <% current_user.payrolls.each do |pr| %>
+    <% @employe.payrolls.each do |pr| %>
     <option value="<%= pr.id %>"> <%= pr.payroll_month_year %></option>
     <% end %>
     </select>
@@ -15,7 +15,7 @@
   $("#payslip_month").change(function(){ 
       $.ajax({
     type : 'get',
-    url : "/payrolls/"+ $(this).val()+".js" ,
+    url : "/users/<%= @employe.id %>/payrolls/"+ $(this).val()+".js" ,
     dataType : 'script'
 
   });

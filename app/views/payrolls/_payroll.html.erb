@@ -100,7 +100,7 @@
   </tr>
 </table>
 
-<%= link_to 'Download', "/payrolls/#{payroll.id}.pdf",:class => 'btn btn-info' %>
+<%= link_to 'Download', "/users/#{payroll.user.id}/payrolls/#{payroll.id}.pdf",:class => 'btn btn-info' %>
 <!-- 
   <table style="width:100%;">
         <tr>

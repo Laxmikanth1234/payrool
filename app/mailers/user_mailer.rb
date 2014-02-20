@@ -25,5 +25,20 @@ class UserMailer < ActionMailer::Base
     mail(:to => "#{leave.user.name} <chandrasekharjangam@gmail.com>", :subject => "Leave Application")
   end
   
+  def leave_approve_notfication(leave,request)
+    @leave = leave
+    @request = request
+    data = File.read(Rails.root.join('public/assets/Logo-website2.png'))
+    attachments.inline['logo.png'] = data
+    mail(:to => "#{leave.user.name} <chandrasekharjangam@gmail.com>", :subject => "Leave Application Approved")
+  end
+  
+  def leave_reject_notfication(leave,request)
+    @leave = leave
+    @request = request
+    data = File.read(Rails.root.join('public/assets/Logo-website2.png'))
+    attachments.inline['logo.png'] = data
+    mail(:to => "#{leave.user.name} <chandrasekharjangam@gmail.com>", :subject => "Leave Application Rejected")
+  end
   
 end

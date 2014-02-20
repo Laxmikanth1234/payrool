@@ -23,7 +23,7 @@ class LeavesController < ApplicationController
     @working_day = @total_days.reject{ |d| @holiday_day.include?(d)}
     @leave.user_id = current_user.id
     @leave.manager_id = current_user.manager_id
-    @leave.status = "pending"
+    @leave.status = "Pending"
     @leave.working_days = @working_day.count
     @leave.holiday_days = @holiday_day.count
     @leave.total_days = @total_days.size
@@ -73,10 +73,16 @@ class LeavesController < ApplicationController
   end
 
   def approve_leave
-    leave = Leave.find(params[:id])
+    @leave = Leave.find(params[:id])
     status = params[:rejected].present? ? params[:rejected] : "Approved"
-    if leave.update_attribute("status",status)
+    if @leave.update_attribute("status",status)
       # LmsMailer.leave_approved(leave,current_user, status).deliver
+      if @leave.status == 'Approved'
+        UserMailer.leave_approve_notfication(@leave,request).deliver
+      end
+      if @leave.status == 'Rejected'
+        UserMailer.leave_reject_notfication(@leave,request).deliver
+      end
       flash[:notice] = "Leave updated successfully"
       redirect_to leave_to_approve_leaves_path
     end
