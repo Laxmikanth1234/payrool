@@ -22,7 +22,7 @@ class UserMailer < ActionMailer::Base
     @request = request
     data = File.read(Rails.root.join('public/assets/Logo-website2.png'))
     attachments.inline['logo.png'] = data
-    mail(:to => "#{leave.user.name} <chandrasekharjangam@gmail.com>", :subject => "Leave Application")
+    mail(:to => "#{leave.user.name} <#{leave.user.email}>", :subject => "Leave Application")
   end
   
   def leave_approve_notfication(leave,request)
@@ -30,7 +30,7 @@ class UserMailer < ActionMailer::Base
     @request = request
     data = File.read(Rails.root.join('public/assets/Logo-website2.png'))
     attachments.inline['logo.png'] = data
-    mail(:to => "#{leave.user.name} <chandrasekharjangam@gmail.com>", :subject => "Leave Application Approved")
+    mail(:to => "#{leave.user.name} <#{leave.user.email}>", :subject => "Leave Application Approved")
   end
   
   def leave_reject_notfication(leave,request)
@@ -38,7 +38,7 @@ class UserMailer < ActionMailer::Base
     @request = request
     data = File.read(Rails.root.join('public/assets/Logo-website2.png'))
     attachments.inline['logo.png'] = data
-    mail(:to => "#{leave.user.name} <chandrasekharjangam@gmail.com>", :subject => "Leave Application Rejected")
+    mail(:to => "#{leave.user.name} <#{leave.user.email}>", :subject => "Leave Application Rejected")
   end
   
 end
