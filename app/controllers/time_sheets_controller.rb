@@ -4,7 +4,7 @@ class TimeSheetsController < ApplicationController
   
   def index
     
-    @time_sheet = TimeSheet.last
+    @time_sheet = TimeSheet.order(:start_date).last
     if @time_sheet.present?
       @holidays = Holiday.where(:month => @time_sheet.start_date.strftime("%m"),:year => @time_sheet.start_date.strftime("%Y"));
     end
@@ -38,7 +38,7 @@ class TimeSheetsController < ApplicationController
   # GET /time_sheets/new
   # GET /time_sheets/new.json
   def new
-    @time_sheet = TimeSheet.new(user_id: current_user.id,manager_id: current_user.manager_id, start_date: Date.today.beginning_of_month, end_date: Date.today.end_of_month, month: Date.today.strftime("%m"), year: Date.today.strftime("Y"),status: "New")
+    @time_sheet = TimeSheet.new(user_id: current_user.id,manager_id: current_user.manager_id, start_date: Date.today.beginning_of_month, end_date: Date.today.end_of_month, month: Date.today.strftime("%m"), year: Date.today.strftime("%Y"),status: "New")
     logged_hours = []
     @holidays = Holiday.where(:month => Date.today.strftime("%m"),:year =>Date.today.strftime("%Y"))
     
@@ -52,10 +52,7 @@ class TimeSheetsController < ApplicationController
     end
     @time_sheet.logged_hours = logged_hours
     @time_sheet.save!
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @time_sheet }
-    end
+   redirect_to time_sheets_path
   end
 
   # GET /time_sheets/1/edit

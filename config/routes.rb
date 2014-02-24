@@ -17,6 +17,7 @@ Payrolles::Application.routes.draw do
   resources :payrolls do
     collection do
       get 'generate_payroll'
+      get 'get_timesheet_dets'
     end
   end
   resources :salaries

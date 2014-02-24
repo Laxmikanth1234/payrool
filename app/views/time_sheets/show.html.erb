@@ -59,9 +59,10 @@
 <% if current_user.is_employee? %>
   <%= form_for @time_sheet do |f| %>
     <%= f.hidden_field :status, :value => 'Submisson' %>
-    
-  <input type="submit" class="btn btn-success" value="Submit for Approval">
+  <% if @time_sheet.status == "New"%>
+  <%= button_tag "Submit for Approval", :class => 'btn btn-success',:id => @time_sheet.id,:confirm => 'Are you sure to submit time sheet to manager ?' %>  
   <a class="btn btn-info" href="<%= time_sheets_path%>"> Edit Time Sheet</a>
+  <% end %>
   <a class="btn btn-danger" href="<%= time_sheets_path %>"> Back</a>
   <a class="btn btn-danger" href="<%= root_path %>"> Cancel</a>
   <% end %>

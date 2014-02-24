@@ -6,3 +6,12 @@
     </div>
 </fieledset>
 <% end %>
+<Script>
+$("#payroll_month,#payroll_year").change(function(){
+  month = $("#payroll_month").val();
+  year = $("#payroll_year").val();
+  user_id = "<%= params[:user_id] %>";
+  if(parseInt(month) > 0 && parseInt(year) > 0){
+  }
+});
+</script>

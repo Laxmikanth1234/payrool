@@ -56,12 +56,13 @@
 <% end %>
 </table>
 <div class="actions">
+<% if @time_sheet.status == 'New' %>
   <%= form_for @time_sheet do |f| %>
     <%= f.hidden_field :status, :value => 'Submisson' %>
     <input type="submit" class="btn btn-success" value="Submit for Approval">
      <a class="btn btn-info" href="<%= time_sheets_path%>"> Edit Time Sheet</a>
   <a class="btn btn-danger" href="<%= root_path %>"> Cancel</a>
   <% end %>
- 
+ <% end %>
 </div>
 </div>

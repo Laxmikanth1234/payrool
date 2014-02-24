@@ -1,47 +1,52 @@
+<% if time_sheet %>
+<%= form_for time_sheet do |f| %>  
+  <center>
+    <h1> Time Sheet For <%= time_sheet.start_date.strftime("%B %Y") %> </h1>
+  </center>
 <div>
-  <b> Total Days :</b> <%= f.text_field "total_working_days",:value => time_sheet.logged_hours.count,:size => 4, :readonly => true %>
+  <b> Total Days :</b> <%= f.text_field "total_working_days",:value => time_sheet.logged_hours.count,:size => 4, :readonly => true,:style => "width:40px;" %>
   &nbsp;&nbsp;&nbsp;
-  <b>Total Days Logged :</b> <%= f.text_field "total_logged_days",:size => 4, :readonly => true %>
+  <b>Total Days Logged :</b> <%= f.text_field "total_logged_days",:size => 4, :readonly => true,:style => "width:40px;" %>
   &nbsp;&nbsp;&nbsp;
   <b>Status:</b> <%= time_sheet.status %>
 </div>
 
 <table class="table table-striped table-bordered" >
-  <tr>
-    <td style="max-width:20px;" align="center">
+  <tr style="vertical-align:middle">
+    <th style="max-width:20px;" align="center">
       Mon
-    </td>
-    <td style="max-width:20px;" align="center">
+    </th>
+    <th style="max-width:20px;" align="center">
       Tue
-    </td>
-    <td style="max-width:20px;" align="center">
+    </th>
+    <th style="max-width:20px;" align="center">
       Wed
-    </td>
-    <td style="max-width:20px;" align="center">
+    </th>
+    <th style="max-width:20px;" align="center">
       Thus
-    </td>
-    <td style="max-width:20px;" align="center">
+    </th>
+    <th style="max-width:20px;" align="center">
       Fri
-    </td>
-    <td style="max-width:20px;" align="center">
+    </th>
+    <th style="max-width:20px;" align="center">
       Sat
-    </td>
-    <td style="max-width:20px;" align="center">
+    </th>
+    <th style="max-width:20px;" align="center">
       Sun
-    </td>
+    </th>
   </tr>
 <% i = 0 %>  
 <% calender_view(time_sheet).each do |p| %>
-  <tr>
+  <tr style="vertical-align:middle">
     <% p.each do |y| %>
       <td style="max-width:20px;" align="center">
         <% if y.present? %>
          <%= y.strftime("%d") %>
-          <% h_flag = @holidays.collect{|x| x.day}.include? y.strftime("%d").to_i %>
+          <% h_flag = holidays.collect{|x| x.day}.include? y.strftime("%d").to_i %>
           <%  if y <= Date.today && !h_flag %>
-           <%= text_field_tag 'logged_hours[]', time_sheet.logged_hours[i],:size => 2,:class => 'work_hours' %>
+           <%= text_field_tag 'logged_hours[]', time_sheet.logged_hours[i],:length => 2,:class => 'work_hours',:style => "width:40px;" %>
           <% else %>
-           <%= text_field_tag 'logged_hours[]', time_sheet.logged_hours[i],:size => 2,:readonly => "readonly",:class => 'work_hours', :style=> h_flag && y <= Date.today ? "background-color:#00FFFF" : "background-color:rgb(209, 201, 201)"  %>
+           <%= text_field_tag 'logged_hours[]', time_sheet.logged_hours[i],:length => 2,:readonly => "readonly",:class => 'work_hours', :style=> h_flag && y <= Date.today ? "width:40px;background-color:#00FFFF" : "width:40px;background-color:rgb(209, 201, 201)"  %>
           <% end %>
           <% i = i+1 %>
         <% end %>
@@ -50,6 +55,17 @@
   </tr>
 <% end %>
 </table>
+       <div class="actions">
+    <% if time_sheet.status == 'New' || time_sheet.status == 'Reject' %>
+      <input type="submit" value="Save timesheet" class="btn btn-primary">
+      <%= link_to "Submit",time_sheet,:class => 'btn btn-success' %>
+      <a href="/time_sheets" class="btn btn-default">Cancel</a>
+      <% end %>
+     </div>
+<% end %>
+<% else %>
+ <%= link_to 'Start Time Log', new_time_sheet_path %> For <%= DateTime.now.strftime("%B %Y") %>
+<% end %>
 <script>
 <% if time_sheet.status == "Submission" || time_sheet.status == "Approve" %>
  $(".work_hours").attr("readonly",true);

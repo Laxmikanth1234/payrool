@@ -10,6 +10,9 @@ class PayrollsController < ApplicationController
     end
   end
   
+  def get_timesheet_dets
+    
+  end
   
   def generate_payroll
     @employes = User
@@ -47,6 +50,7 @@ class PayrollsController < ApplicationController
   # GET /payrolls/new.json
   def new
     @payroll = Payroll.new
+    @payroll.user = @employe
     @employe = User.find_by_id(params[:user_id])
     respond_to do |format|
       format.html # new.html.erb

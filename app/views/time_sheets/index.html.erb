@@ -1,26 +1,28 @@
 <h1>Time Sheets</h1>
-
-<% if @time_sheet %>
-<div>
-  <center>
-   <h1> Time Sheet For <%= DateTime.now.strftime("%B %Y") %> </h1>
-  </center>
-</div>
-
-<table class="center table table-striped table-bordered">
-  <tr>
-    <%= form_for @time_sheet do |f| %>
-     <%= render "time_sheet", :f => f,:time_sheet => @time_sheet %>
-     <div class="actions">
-    <% if @time_sheet.status == 'New' || @time_sheet.status == 'Reject' %>
-      <input type="submit" value="Save timesheet" class="btn btn-primary">
-      <%= link_to "Submit",@time_sheet,:class => 'btn btn-success' %>
-      <a href="/time_sheets" class="btn btn-default">Cancel</a>
-      <% end %>
-     </div>
+<div class="bootstrap">
+<div class="control-group row-fluid form-inline">
+  <div class="controls">
+    <label>Select TimeSheet For Month </label>
+    <select name="ts_month" id="ts_month">
+      <option> Select Month&Year</option>
+    <% current_user.time_sheets.each do |pr| %>
+    <option value="<%= pr.id %>"> <%= pr.start_date.strftime("%B %Y") %></option>
     <% end %>
-  </tr>
-</table>
-<% else %>
- <%= link_to 'Start Time Log', new_time_sheet_path %> For <%= DateTime.now.strftime("%B %Y") %>
-<% end %>
+    </select>
+  </div>
+</div>
+<div id="ts_div">
+    <%= render "time_sheet", :time_sheet => @time_sheet,:holidays => @holidays %>
+</div>
+</div>
+<script>
+ $("#ts_month").change(function(){ 
+      $.ajax({
+    type : 'get',
+    url : "/time_sheets/"+ $(this).val()+".js" ,
+    dataType : 'script'
+
+  });
+    });
+</script>
+

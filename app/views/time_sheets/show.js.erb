@@ -1,3 +1,2 @@
-$('#ts_popup').replaceWith('<%= escape_javascript(render :partial => "show") %>');
-$modal = $('.modal')
-$('#ts_popup').modal();
+$('#ts_div').html("");
+$('#ts_div').append("<%= escape_javascript render(:partial => 'time_sheet', :locals => { :time_sheet => @time_sheet,:holidays => @holidays }) %>");
