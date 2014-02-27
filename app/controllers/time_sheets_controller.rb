@@ -41,15 +41,18 @@ class TimeSheetsController < ApplicationController
     @time_sheet = TimeSheet.new(user_id: current_user.id,manager_id: current_user.manager_id, start_date: Date.today.beginning_of_month, end_date: Date.today.end_of_month, month: Date.today.strftime("%m"), year: Date.today.strftime("%Y"),status: "New")
     logged_hours = []
     @holidays = Holiday.where(:month => Date.today.strftime("%m"),:year =>Date.today.strftime("%Y"))
-    
+    total_logged_days = 0
     (Date.today.beginning_of_month..Date.today.end_of_month).select{|x| x}.each do |y|
       if (@holidays.collect{|x| x.day}.include? y.strftime("%d").to_i) && (y <= Date.today)
         logged_hours << 8
+        total_logged_days = 1 + total_logged_days
       else
         logged_hours << 0
       end
       
     end
+    @time_sheet.total_logged_days = total_logged_days
+    @time_sheet.total_working_days = logged_hours.count
     @time_sheet.logged_hours = logged_hours
     @time_sheet.save!
    redirect_to time_sheets_path

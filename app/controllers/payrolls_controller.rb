@@ -14,6 +14,11 @@ class PayrollsController < ApplicationController
     
   end
   
+  def work_days
+    @employe = User.find_by_id(params[:user_id])
+    @time_sheet = @employe.time_sheets.where(:month => params[:month].to_i,:year => params[:year].to_i).first
+  end
+  
   def generate_payroll
     @employes = User
     if current_user.is_admin?

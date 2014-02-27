@@ -1,0 +1,58 @@
+<% if time_sheet %>
+ <div class="control-group">
+   <label class="control-label"> Total Working Days </label>
+   <div class="controls">
+    <input type="text" id="payroll_total_working_days" name="payroll[total_working_days]" value = "<%= time_sheet.total_working_days%>">
+   </div>
+ </div>
+  <div class="control-group">
+   <label class="control-label"> Working Days </label>
+   <div class="controls">
+    <input type="text" id="payroll_working_days" name="payroll[working_days]" value = "<%= time_sheet.total_logged_days%>">
+   </div>
+ </div>
+ <div class="control-group">
+   <label class="control-label"> Time Sheet Status </label>
+   <div class="controls">
+    <b> <%= time_sheet.status %> </b>
+    <% if time_sheet.status != 'Approed' %>
+    <label class="label label-danger" style="background-color:red;">Time Sheet not Approved</label>
+    <% end %>
+   </div>
+ </div>
+  <div class="control-group">
+   <div class="controls">
+     <input type="submit" class="btn btn-success" value="Generate Payroll"> 
+   </div>
+ </div>
+<% else %>
+ <div class="control-group">
+   <div class="controls">
+    <label class="label label-danger" style="background-color:red;">Time Sheet not found for given month year</label>
+   </div>
+ </div>
+
+  <div class="control-group">
+   <label class="control-label"> Total Working Days </label>
+   <div class="controls">
+    <input type="text" id="payroll_total_working_days" name="payroll[total_working_days]" >
+   </div>
+ </div>
+  <div class="control-group">
+   <label class="control-label"> Working Days </label>
+   <div class="controls">
+    <input type="text" id="payroll_working_days" name="payroll[working_days]" value = "">
+   </div>
+ </div>
+ <div class="control-group">
+   <label class="control-label"> Time Sheet Status </label>
+   <div class="controls">
+    <b> NA </b>
+   </div>
+ </div>
+  <div class="control-group">
+   <div class="controls">
+     <input type="submit" class="btn btn-success" value="Generate Payroll"> 
+   </div>
+ </div>
+<% end %>

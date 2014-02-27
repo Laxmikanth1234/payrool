@@ -1,0 +1,2 @@
+$('#work_days').html("");
+$('#work_days').append("<%= escape_javascript render(:partial => 'work_days', :locals => { :time_sheet => @time_sheet }) %>");

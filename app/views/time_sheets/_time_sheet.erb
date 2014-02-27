@@ -66,6 +66,7 @@
 <% else %>
  <%= link_to 'Start Time Log', new_time_sheet_path %> For <%= DateTime.now.strftime("%B %Y") %>
 <% end %>
+<% if time_sheet %>
 <script>
 <% if time_sheet.status == "Submission" || time_sheet.status == "Approve" %>
  $(".work_hours").attr("readonly",true);
@@ -89,3 +90,4 @@ $( document ).ready(function() {
        $("#time_sheet_total_logged_days").val(value/8);
     });
 </script>
+<% end %>

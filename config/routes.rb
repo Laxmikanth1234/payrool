@@ -41,7 +41,11 @@ Payrolles::Application.routes.draw do
   resources :employes
   resources :users do
     resources :salaries
-    resources :payrolls
+    resources :payrolls do
+      collection do
+        get 'work_days'
+      end
+    end
   end
   resources :password_resets
   

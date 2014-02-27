@@ -1,5 +1,5 @@
 class Payroll < ActiveRecord::Base
-  attr_accessible :advance_salary, :basic, :daily, :employe, :esi, :gross, :hra, :medical, :net_salary, :other, :payroll_month_year, :pf, :professional_tax, :tds, :total_deductions, :total_working_days, :travel, :variable, :working_days
+  attr_accessible :month, :year, :advance_salary, :basic, :daily, :employe, :esi, :gross, :hra, :medical, :net_salary, :other, :payroll_month_year, :pf, :professional_tax, :tds, :total_deductions, :total_working_days, :travel, :variable, :working_days
   belongs_to :user
   MONTH_ARRAY = {"" => "Month","1" => "Jan", "2" => "Feb","3" => "Mar","4" => "Apr","5" => "May","6" => "Jun","7" => "Jul","8" => "Aug","9" => "Sep","10" => "Oct","11" => "Nov","12" => "Dec"}
   
