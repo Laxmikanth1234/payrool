@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :time_sheets
   has_many :manger_time_sheets, :class_name => "TimeSheet", :foreign_key => "manager_id"
   mount_uploader :image, ImageUploader
-  validates :number, :first_name, :middle_name, :last_name, :date_of_birth, :sex, :email, :pan, :designation, :mobile_number, :date_of_joining, :address, :last_down_ctc, presence: true
+  #validates :number, :first_name, :middle_name, :last_name, :date_of_birth, :sex, :email, :pan, :designation, :mobile_number, :date_of_joining, :address, :last_down_ctc, presence: true
   
   def is_admin?
     self.role.name.downcase == "admin" if self.role_id
