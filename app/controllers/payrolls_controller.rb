@@ -39,11 +39,16 @@ class PayrollsController < ApplicationController
     @payroll = user.payrolls.find(params[:id])
     @employe = user
     respond_to do |format|
-      format.html # show.html.erb
+      format.html{
+      html = render_to_string(:action => :show, :layout => false) 
+        pdf = WickedPdf.new.pdf_from_string(html) 
+        UserMailer.payslip_mail(@payroll, pdf,request).deliver!
+      }
       format.js
       format.pdf { 
         html = render_to_string(:action => :show, :layout => false) 
         pdf = WickedPdf.new.pdf_from_string(html) 
+        #UserMailer.payslip_mail(@payroll, pdf,request).deliver!
         send_data(pdf, 
           :filename    => "#{@employe.number}#{@employe.name}-Payslip.pdf", 
           :disposition => 'attachment') 
@@ -75,6 +80,7 @@ class PayrollsController < ApplicationController
     @payroll = @employe.payrolls.new(params[:payroll])
     @payroll.user = @employe
     @payroll.calculate_salary(@employe.salary)
+    @payroll.payroll_month_year = "#{Payroll::MONTH_ARRAY[@payroll.month.to_s]}-#{@payroll.year}"
     respond_to do |format|
       if @payroll.save
         format.html { redirect_to [@employe, @payroll], notice: 'Payroll was successfully created.' }
