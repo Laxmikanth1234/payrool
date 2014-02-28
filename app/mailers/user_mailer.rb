@@ -16,6 +16,15 @@ class UserMailer < ActionMailer::Base
     mail to: "chandrasekharjangam@gmail.com"
   end
   
+  def payslip_mail(payroll,pdf,request)
+    @payroll = payroll
+    @request = request
+    data = File.read(Rails.root.join('public/assets/Logo-website2.png'))
+    attachments.inline['logo.png'] = data
+    
+    attachments["#{@payroll.user.name}-#{@payroll.payroll_month_year}.pdf"] = pdf
+    mail(:to => "#{@payroll.user.name} <chandrasekharjangam@gmail.com>", :subject => "Payslip")
+  end
   
   def leave_email(leave,request)
     @leave = leave
