@@ -23,7 +23,7 @@ class UserMailer < ActionMailer::Base
     attachments.inline['logo.png'] = data
     
     attachments["#{@payroll.user.name}-#{@payroll.payroll_month_year}.pdf"] = pdf
-    mail(:to => "#{@payroll.user.name} <chandrasekharjangam@gmail.com>", :subject => "Payslip")
+    mail(:to => "#{@payroll.user.name} <{@payroll.user.email}>", :subject => "Payslip For #{@payroll.payroll_month_year}")
   end
   
   def leave_email(leave,request)
